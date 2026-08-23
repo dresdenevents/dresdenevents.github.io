@@ -1,88 +1,696 @@
-<!DOCTYPE HTML>
-<!--
-	Ethereal by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Dresden Events</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kleine Kugel — Gacha-Automaten für Hochzeit & Events</title>
+<meta name="description" content="Charmante Gacha-Automaten zum Mieten für Hochzeiten, Firmen- und Teamevents. Kleine Kugel, große Freude.">
+<style>
 
-	</head>
-	<body>
+  /* ---------- Tokens ---------- */
+  :root{
+    --cream:#FBF5E8;
+    --cream-2:#F3E7D2;
+    --paper:#FFFDF8;
+    --ink:#2E2438;
+    --ink-soft:#5B4E68;
+    --purple-deep:#5B3286;
+    --purple:#8654B8;
+    --pink:#EE6FA3;
+    --pink-soft:#F6B8D0;
+    --gold:#C7A360;
+    --gold-deep:#9C7B36;
+    --line: rgba(91,50,134,0.14);
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-script: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  }
 
-				<!-- Wrapper -->
-					<div id="wrapper">
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+  ::selection{ background:var(--pink-soft); color:var(--ink); }
 
-						<!-- Panel (Banner) -->
-							<section class="panel spotlight medium">
-								<div class="content span-7">
-									<h1 class="major">Dresden Events</h1>
-									<div>Du suchst nach coolen Einladungen für Deine Feiern? 
-										Oder du brauchst Hilfe bei der Organisation Deines Events?
-									</div>
-									<ul class="actions" style="margin-top: 20px">
-										<li><a href="#first" class="button special color1 circle icon fa-angle-right">Next</a></li>
-									</ul>
-								</div>
-								<div class="image filtered tinted span-1-75" data-position="42% 25%">
-									<img src="images/pic1.jpg" alt="" />
-								</div>
-							</section>
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+    outline:3px solid var(--purple);
+    outline-offset:2px;
+    border-radius:4px;
+  }
 
-						<!-- Panel (Spotlight) -->
-							<section class="panel spotlight medium right" id="first">
-								<div class="content span-7">
-									<h2 class="major">Unser Service</h2>
-									<p> Bei uns findest Dein Rundum-Paket für Deine Party:
-									<ul style="list-style: none; margin: 0;">
-										<li><i class="fa fa-envelope" aria-hidden="true" style="margin-right: 5px"></i>Professionelle digitale (und analoge) Einladungen </li>
-										<li><i class="fa fa-clock-o style="margin-right: 5px" aria-hidden="true"></i> Organisation von Location, Musik und Catering </li>
-										<li><i class="fa fa-star" aria-hidden="true"></i> Beste Unterhaltung für Deine Gäste</li>
-									</ul>
-								
-									<br>
-									</p>
-								</div>
-								<div class="image filtered tinted" data-position="top left">
-									<img src="images/pic2.jpg" alt="" />
-								</div>
-							</section>
+  .wrap{ max-width:1160px; margin:0 auto; padding:0 28px; }
 
-							<section class="panel spotlight medium right" id="first">
-								<div class="content span-7">
-									<h2 class="major">Kontakt</h2>
-									<p>
-										<ul class="contact-icons color1">
-											<li class="icon fa-envelope"><a href="mailto:mehrzusammensein@gmail.com?Subject=Contact%20request" target="_top" ><span>Mail</span></a></li>
+  .eyebrow{
+    font-family:var(--font-script);
+    font-style:italic;
+    color:var(--purple);
+    font-size:1.35rem;
+    margin:0 0 6px 0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow svg{ width:16px; height:16px; flex:none; }
 
-										</ul>
-									<br>
-									</p>
-								</div>
-								<div class="image filtered tinted" data-position="top left">
-									<img src="images/pic05.jpg" alt="" />
-								</div>
-							</section>
-						
-					</div>
+  h1,h2,h3{ font-family:var(--font-display); margin:0; color:var(--ink); }
 
-			</div>
-<div class="footer">Einladung von <a href="https://dresdenevents.github.io/index.html">dresdenevents</a> mit ❤</div>
+  .grad-text{
+    background:linear-gradient(100deg, var(--purple-deep), var(--pink));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/main.js"></script>
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:0.98rem;
+    padding:14px 26px;
+    border-radius:999px;
+    border:2px solid transparent;
+    cursor:pointer;
+    text-decoration:none;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(100deg, var(--purple-deep), var(--pink));
+    color:#fff;
+    box-shadow:0 10px 24px -10px rgba(91,50,134,0.55);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 14px 28px -10px rgba(91,50,134,0.6); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--purple-deep);
+    border-color:var(--purple-deep);
+  }
+  .btn-ghost:hover{ background:rgba(91,50,134,0.06); }
 
-	</body>
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,245,232,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:1160px; margin:0 auto;
+  }
+  .logo{
+    font-family:var(--font-script); font-style:italic;
+    font-size:1.55rem; color:var(--ink);
+    display:flex; align-items:baseline; gap:6px;
+  }
+  .logo b{
+    font-family:var(--font-display); font-style:normal; font-weight:800;
+    background:linear-gradient(100deg, var(--purple-deep), var(--pink));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .nav-links{ display:flex; align-items:center; gap:28px; list-style:none; margin:0; padding:0; }
+  .nav-links a{
+    text-decoration:none; font-weight:600; font-size:0.94rem; color:var(--ink-soft);
+    padding-bottom:3px; border-bottom:2px solid transparent;
+  }
+  .nav-links a:hover{ color:var(--purple-deep); border-color:var(--pink-soft); }
+  .nav-cta{ display:none; }
+  @media (min-width:860px){ .nav-cta{ display:inline-flex; } }
+  .nav-links{ display:none; }
+  @media (min-width:860px){ .nav-links{ display:flex; } }
+  .burger{
+    display:inline-flex; background:none; border:2px solid var(--purple-deep); border-radius:10px;
+    padding:8px 10px; color:var(--purple-deep);
+  }
+  @media (min-width:860px){ .burger{ display:none; } }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:56px 0 40px;
+    overflow:visible;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1fr; gap:40px; align-items:center;
+  }
+  @media (min-width:900px){
+    .hero-grid{ grid-template-columns:1.05fr 0.95fr; gap:56px; }
+  }
+  .hero-copy p.lead{
+    font-size:1.12rem; color:var(--ink-soft); max-width:46ch; margin:16px 0 26px;
+  }
+  .hero h2{
+    font-size:clamp(2.3rem, 5.6vw, 3.6rem);
+    font-weight:800;
+    letter-spacing:-0.01em;
+    line-height:1.04;
+  }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:34px; }
+
+  .hero-features{
+    display:grid; grid-template-columns:1fr 1fr; gap:18px 22px;
+  }
+  .hf{ display:flex; gap:12px; align-items:flex-start; }
+  .hf .ic{
+    flex:none; width:38px; height:38px; border-radius:50%;
+    background:var(--pink-soft); display:flex; align-items:center; justify-content:center;
+    color:var(--purple-deep);
+  }
+  .hf .ic svg{ width:18px; height:18px; }
+  .hf strong{ display:block; font-size:0.95rem; }
+  .hf span{ display:block; font-size:0.85rem; color:var(--ink-soft); }
+
+  .hero-media{ position:relative; }
+  .hero-media .frame{
+    position:relative; border-radius:26px; overflow:hidden;
+    box-shadow:0 30px 60px -24px rgba(46,36,56,0.35);
+    border:6px solid var(--paper);
+    transform:rotate(-1.2deg);
+  }
+  .hero-media img{ width:100%; height:auto; display:block; }
+
+  .badge-tag{
+    position:absolute; top:-26px; right:-14px;
+    width:132px; z-index:5;
+    transform:rotate(9deg);
+    filter:drop-shadow(0 12px 18px rgba(46,36,56,0.25));
+  }
+  @media (max-width:520px){ .badge-tag{ width:104px; top:-18px; right:6px; } }
+  .badge-tag .string{
+    width:2px; height:26px; background:var(--gold-deep); margin:0 auto;
+  }
+  .badge-tag .card{
+    background:#EFE0BF;
+    border:1.5px solid var(--gold-deep);
+    border-radius:14px 22px 16px 24px / 22px 14px 24px 16px;
+    padding:14px 10px 16px;
+    text-align:center;
+  }
+  .badge-tag .card p{
+    margin:0; font-family:var(--font-script); font-style:italic;
+    color:#6B4E20; font-size:0.78rem; line-height:1.2;
+  }
+  .badge-tag .seal{
+    width:44px; height:44px; margin:8px auto;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--pink-soft), var(--pink) 60%, #C24E80 100%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:inset 0 -3px 6px rgba(0,0,0,0.15);
+  }
+  .badge-tag .seal svg{ width:18px; height:18px; color:#fff; }
+
+  .swash{
+    position:absolute; color:var(--pink);
+  }
+
+  /* ---------- Trust strip ---------- */
+  .strip{
+    background:linear-gradient(100deg, var(--purple-deep), var(--purple) 55%, var(--pink));
+    color:#fff; padding:18px 0;
+  }
+  .strip .wrap{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:14px 34px;
+    font-size:0.88rem; font-weight:700; letter-spacing:0.02em;
+  }
+  .strip span{ display:flex; align-items:center; gap:8px; opacity:0.96; }
+  .strip svg{ width:15px; height:15px; }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:76px 0; }
+  .section-head{ max-width:640px; margin:0 auto 46px; text-align:center; }
+  .section-head h2{ font-size:clamp(1.7rem, 3.4vw, 2.3rem); margin-top:8px; }
+  .section-head .eyebrow{ justify-content:center; }
+  .section-head p{ color:var(--ink-soft); margin-top:12px; font-size:1.02rem; }
+
+  /* ---------- Features ---------- */
+  .features-grid{
+    display:grid; grid-template-columns:1fr; gap:22px;
+  }
+  @media (min-width:700px){ .features-grid{ grid-template-columns:1fr 1fr; } }
+  .feature-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:26px 24px;
+    display:flex; gap:16px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .feature-card:hover{ transform:translateY(-4px); box-shadow:0 18px 30px -18px rgba(91,50,134,0.35); }
+  .feature-card .ic{
+    flex:none; width:48px; height:48px; border-radius:14px;
+    background:linear-gradient(135deg, var(--pink-soft), #EAD9F5);
+    display:flex; align-items:center; justify-content:center; color:var(--purple-deep);
+  }
+  .feature-card .ic svg{ width:22px; height:22px; }
+  .feature-card h3{ font-size:1.08rem; margin-bottom:6px; }
+  .feature-card p{ margin:0; color:var(--ink-soft); font-size:0.94rem; }
+
+  /* ---------- Steps ---------- */
+  .steps-section{ background:var(--cream-2); }
+  .steps-grid{
+    display:grid; grid-template-columns:1fr; gap:44px; align-items:center;
+  }
+  @media (min-width:900px){ .steps-grid{ grid-template-columns:0.85fr 1.15fr; } }
+  .steps-media img{
+    border-radius:22px; box-shadow:0 24px 46px -22px rgba(46,36,56,0.3);
+    border:6px solid var(--paper);
+    transform:rotate(1deg);
+  }
+  .step-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:26px; }
+  .step-list li{ display:flex; gap:18px; }
+  .step-num{
+    flex:none; width:44px; height:44px; border-radius:50%;
+    background:linear-gradient(135deg, var(--purple-deep), var(--pink));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-family:var(--font-display); font-size:1.05rem;
+  }
+  .step-list h3{ font-size:1.08rem; margin-bottom:4px; }
+  .step-list p{ margin:0; color:var(--ink-soft); font-size:0.95rem; }
+
+  /* ---------- Occasions ---------- */
+  .occ-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:18px;
+  }
+  @media (min-width:760px){ .occ-grid{ grid-template-columns:repeat(4,1fr); } }
+  .occ-card{
+    border-radius:18px; padding:26px 18px; text-align:center;
+    background:var(--paper); border:1px solid var(--line);
+  }
+  .occ-card .ic{
+    width:46px; height:46px; margin:0 auto 12px; border-radius:50%;
+    background:var(--pink-soft); color:var(--purple-deep);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .occ-card .ic svg{ width:20px; height:20px; }
+  .occ-card h3{ font-size:0.98rem; }
+
+  /* ---------- Contact ---------- */
+  .contact-section{
+    background:linear-gradient(180deg, var(--cream) 0%, #F1E4EC 100%);
+  }
+  .contact-grid{
+    display:grid; grid-template-columns:1fr; gap:36px;
+  }
+  @media (min-width:920px){ .contact-grid{ grid-template-columns:0.85fr 1.15fr; } }
+
+  .contact-info{
+    background:linear-gradient(160deg, var(--purple-deep), var(--purple) 60%, var(--pink));
+    color:#fff; border-radius:24px; padding:36px 30px;
+  }
+  .contact-info h3{ font-size:1.3rem; margin-bottom:10px; }
+  .contact-info p{ opacity:0.92; font-size:0.95rem; margin-bottom:24px; }
+  .contact-line{
+    display:flex; gap:12px; align-items:flex-start; margin-bottom:16px; font-size:0.93rem;
+  }
+  .contact-line svg{ width:18px; height:18px; flex:none; margin-top:2px; }
+  .contact-line a{ color:#fff; text-decoration:underline; text-decoration-color:rgba(255,255,255,0.5); }
+  .note-pill{
+    margin-top:24px; display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,0.14); padding:8px 14px; border-radius:999px; font-size:0.82rem;
+  }
+
+  form.request-form{
+    background:var(--paper); border:1px solid var(--line);
+    border-radius:24px; padding:34px 30px;
+  }
+  .form-row{ display:grid; grid-template-columns:1fr; gap:18px; margin-bottom:18px; }
+  @media (min-width:600px){ .form-row.two{ grid-template-columns:1fr 1fr; } }
+  label{ display:block; font-size:0.85rem; font-weight:700; color:var(--ink); margin-bottom:6px; }
+  label .opt{ font-weight:400; color:var(--ink-soft); }
+  input, select, textarea{
+    width:100%; font-family:var(--font-body); font-size:0.96rem;
+    padding:12px 14px; border-radius:12px; border:1.5px solid var(--line);
+    background:#fff; color:var(--ink);
+  }
+  input:focus, select:focus, textarea:focus{ border-color:var(--purple); }
+  textarea{ resize:vertical; min-height:110px; }
+  .form-foot{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:6px;}
+  .form-foot small{ color:var(--ink-soft); }
+  #formStatus{ margin-top:14px; font-size:0.9rem; }
+  #formStatus.ok{ color:#3F7A4C; }
+  #formStatus.err{ color:#B4443E; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:38px 0;
+    background:var(--cream);
+  }
+  .footer-inner{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px;
+  }
+  .footer-links{ display:flex; gap:20px; list-style:none; margin:0; padding:0; font-size:0.85rem; color:var(--ink-soft); }
+  .footer-links a{ text-decoration:none; }
+  .footer-links a:hover{ text-decoration:underline; }
+  .footer-copy{ font-size:0.8rem; color:var(--ink-soft); }
+  .footer-impressum{
+    font-size:0.78rem; color:var(--ink-soft); opacity:0.75;
+  }
+
+  .divider-heart{ display:flex; align-items:center; justify-content:center; gap:10px; margin:0 0 14px; color:var(--pink); }
+  .divider-heart .line{ height:1px; width:60px; background:var(--line); }
+
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">Kleine <b>Kugel</b></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#ablauf">So geht's</a></li>
+        <li><a href="#anlaesse">Für wen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a href="#kontakt" class="btn btn-primary nav-cta">Jetzt anfragen</a>
+    <button class="burger" aria-label="Menü" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" style="display:none; padding:0 28px 18px;">
+    <a href="#ablauf" style="display:block;padding:8px 0;text-decoration:none;color:var(--ink);">So geht's</a>
+    <a href="#anlaesse" style="display:block;padding:8px 0;text-decoration:none;color:var(--ink);">Für wen</a>
+    <a href="#kontakt" style="display:block;padding:8px 0;text-decoration:none;color:var(--ink);">Kontakt</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>
+          Kleine Kugel.
+        </p>
+        <h2>GROSSE <span class="grad-text">FREUDE.</span></h2>
+        <p class="lead">Die charmante Überraschung für eure Hochzeit oder euer Event — ein Gacha-Automat zum Mieten, liebevoll befüllt und ein echter Hingucker für eure Gäste.</p>
+        <div class="hero-ctas">
+          <a href="#kontakt" class="btn btn-primary">Jetzt anfragen</a>
+          <a href="#ablauf" class="btn btn-ghost">So funktioniert's</a>
+        </div>
+
+        <div class="hero-features">
+          <div class="hf">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg></span>
+            <div><strong>Das Highlight für eure Gäste</strong><span>Ein interaktives Erlebnis zum Erinnern.</span></div>
+          </div>
+          <div class="hf">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 12h18M12 8v13M8 8a2.5 2.5 0 0 1 0-5c1.5 0 4 1.5 4 5M16 8a2.5 2.5 0 0 0 0-5c-1.5 0-4 1.5-4 5"/></svg></span>
+            <div><strong>Individuell befüllt</strong><span>Kleine Geschenke, ganz nach eurem Wunsch.</span></div>
+          </div>
+          <div class="hf">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="4"/><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/></svg></span>
+            <div><strong>Ein echter Hingucker</strong><span>Stilvoll & kompakt, drinnen wie draußen.</span></div>
+          </div>
+          <div class="hf">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4z"/><path d="M14 6l3-3 3 3-3 3"/></svg></span>
+            <div><strong>Für jeden Anlass</strong><span>Hochzeit, Firmenfeier, Geburtstag & mehr.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="frame">
+          <img src="hero.png" alt="Gacha-Automat mit bunten Kapseln, dekoriert auf einem Hochzeitstisch">
+        </div>
+        <div class="badge-tag">
+          <div class="string"></div>
+          <div class="card">
+            <p>Für eine Kugel</p>
+            <div class="seal">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>
+            </div>
+            <p>aus Automaten</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="strip">
+    <div class="wrap">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>Mit Liebe zum Detail</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.9H21l-5.6 4.3 2.1 7-5.5-4.4-5.5 4.4 2.1-7L3 8.9h6.6z"/></svg>Hochwertig & zuverlässig</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>Persönlicher Service</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Flexible Buchung</span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="warum">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>Warum Kleine Kugel</p>
+        <h2>Eine kleine Kapsel, eine große Überraschung</h2>
+        <p>Unsere Automaten bringen einen Hauch Nostalgie und jede Menge Freude auf eure Feier — kuratiert, hochwertig und mit Liebe zum Detail befüllt.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg></span>
+          <div><h3>Das Highlight für eure Gäste</h3><p>Ein interaktives Erlebnis, das begeistert und lange in Erinnerung bleibt.</p></div>
+        </div>
+        <div class="feature-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 12h18M12 8v13M8 8a2.5 2.5 0 0 1 0-5c1.5 0 4 1.5 4 5M16 8a2.5 2.5 0 0 0 0-5c-1.5 0-4 1.5-4 5"/></svg></span>
+          <div><h3>Individuell & mit Liebe befüllt</h3><p>Kleine Geschenke, persönliche Botschaften oder Give-aways — ganz nach eurem Konzept.</p></div>
+        </div>
+        <div class="feature-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="4"/><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/></svg></span>
+          <div><h3>Perfekt für Hochzeiten & besondere Events</h3><p>Als Gästebespaßung, Dankeschön oder als Teil eures gesamten Konzepts.</p></div>
+        </div>
+        <div class="feature-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4z"/><path d="M14 6l3-3 3 3-3 3"/></svg></span>
+          <div><h3>Für jede Location ein Hingucker</h3><p>Stilvoll, kompakt und ein echter Blickfang — drinnen wie draußen.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section id="ablauf" class="steps-section">
+    <div class="wrap steps-grid">
+      <div class="steps-media">
+        <img src="steps.png" alt="Drei Schritte: Token nehmen, Münze einwerfen und drehen, Kugel entnehmen">
+      </div>
+      <div>
+        <p class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>So geht's</p>
+        <h2>In drei Schritten zur Überraschung</h2>
+        <ul class="step-list" style="margin-top:28px;">
+          <li>
+            <span class="step-num">1</span>
+            <div><h3>Token nehmen</h3><p>Jeder Gast nimmt den Token von seiner Platzkarte.</p></div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div><h3>Münze einwerfen & drehen</h3><p>Token einwerfen und am Griff bis zum Anschlag drehen.</p></div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div><h3>Kugel entnehmen & freuen</h3><p>Klappe öffnen, Kugel entnehmen und die Überraschung genießen.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- OCCASIONS -->
+  <section id="anlaesse">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>Für wen</p>
+        <h2>Für jeden besonderen Moment</h2>
+      </div>
+      <div class="occ-grid">
+        <div class="occ-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg></span>
+          <h3>Hochzeiten</h3>
+        </div>
+        <div class="occ-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="19" cy="7" r="2.4"/></svg></span>
+          <h3>Firmen- & Team-Events</h3>
+        </div>
+        <div class="occ-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.9H21l-5.6 4.3 2.1 7-5.5-4.4-5.5 4.4 2.1-7L3 8.9h6.6z"/></svg></span>
+          <h3>Geburtstage & private Feiern</h3>
+        </div>
+        <div class="occ-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg></span>
+          <h3>Messen & Sonderaktionen</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt" class="contact-section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>Interesse?</p>
+        <h2>Wir machen euer Event zu etwas Besonderem</h2>
+        <p>Jetzt anfragen & Termin sichern — wir melden uns schnellstmöglich mit einem passenden Angebot.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Sprecht uns an</h3>
+          <p>Erzählt uns kurz von eurem Event — Datum, Ort und ungefähre Gästezahl reichen für den Anfang völlig aus.</p>
+
+          <div class="contact-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <span><a href="mailto:mehrzusammensein@gmail.com">mehrzusammensein@gmail.com</a></span>
+          </div>
+          <div class="contact-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.1 3.4z"/></svg>
+            <span>+49 (0) 176 34 57 57 65</span>
+          </div>
+          <div class="contact-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18M3 12h18"/></svg>
+            <span>Dresden & Umgebung</span>
+          </div>
+
+          <div class="note-pill">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Antwort in der Regel innerhalb von 48 Stunden
+          </div>
+        </div>
+
+        <form class="request-form" id="requestForm">
+          <div class="form-row two">
+            <div>
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required autocomplete="name">
+            </div>
+            <div>
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+          </div>
+          <div class="form-row two">
+            <div>
+              <label for="phone">Telefon <span class="opt">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+            <div>
+              <label for="date">Datum der Veranstaltung</label>
+              <input type="date" id="date" name="date">
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="type">Art der Veranstaltung</label>
+              <select id="type" name="type">
+                <option value="Hochzeit">Hochzeit</option>
+                <option value="Firmen- / Team-Event">Firmen- / Team-Event</option>
+                <option value="Private Feier">Private Feier</option>
+                <option value="Sonstiges">Sonstiges</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="guests">Ungefähre Gästezahl <span class="opt">(optional)</span></label>
+              <input type="number" id="guests" name="guests" min="1" placeholder="z. B. 80">
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="message">Eure Nachricht & Wünsche</label>
+              <textarea id="message" name="message" placeholder="Erzählt uns von eurem Event: Ort, Location, besondere Wünsche zur Befüllung ..."></textarea>
+            </div>
+          </div>
+          <div class="form-foot">
+            <button type="submit" class="btn btn-primary">Anfrage senden</button>
+            <small>Öffnet euer E-Mail-Programm mit vorausgefüllter Nachricht.</small>
+          </div>
+          <div id="formStatus" role="status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="divider-heart">
+      <span class="line"></span>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>
+      <span class="line"></span>
+    </div>
+    <div class="footer-inner">
+      <div>
+        <div class="logo" style="margin-bottom:6px;">Kleine <b>Kugel</b></div>
+        <p class="footer-copy">Gacha-Automaten-Vermietung für Hochzeiten & Events</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#ablauf">So geht's</a></li>
+        <li><a href="#anlaesse">Für wen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li class="footer-impressum">Impressum folgt in Kürze</li>
+      </ul>
+    </div>
+    <p class="footer-copy" style="margin-top:22px;">© 2026 Kleine Kugel</p>
+  </div>
+</footer>
+
+<script>
+  var form = document.getElementById('requestForm');
+  var status = document.getElementById('formStatus');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    if(!name || !email){
+      status.textContent = 'Bitte füllt mindestens Name und E-Mail aus.';
+      status.className = 'err';
+      return;
+    }
+    var phone = document.getElementById('phone').value.trim();
+    var date = document.getElementById('date').value;
+    var type = document.getElementById('type').value;
+    var guests = document.getElementById('guests').value.trim();
+    var message = document.getElementById('message').value.trim();
+
+    var bodyLines = [
+      'Name: ' + name,
+      'E-Mail: ' + email,
+      'Telefon: ' + (phone || '–'),
+      'Datum der Veranstaltung: ' + (date || '–'),
+      'Art der Veranstaltung: ' + type,
+      'Gästezahl: ' + (guests || '–'),
+      '',
+      'Nachricht:',
+      message || '–'
+    ];
+
+    var mailto = 'mailto:mehrzusammensein@gmail.com'
+      + '?subject=' + encodeURIComponent('Anfrage: ' + type + ' – ' + name)
+      + '&body=' + encodeURIComponent(bodyLines.join('\n'));
+
+    window.location.href = mailto;
+    status.textContent = 'Euer E-Mail-Programm öffnet sich mit der vorausgefüllten Anfrage.';
+    status.className = 'ok';
+  });
+</script>
+
+</body>
 </html>
