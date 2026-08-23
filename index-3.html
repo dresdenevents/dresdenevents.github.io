@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kleine Kugel — Gacha-Automaten für Hochzeit & Events</title>
+<meta name="description" content="Charmante Gacha-Automaten zum Mieten für Hochzeiten, Firmen- und Teamevents. Kleine Kugel, große Freude.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">Kleine <b>Kugel</b></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#ablauf">So geht's</a></li>
+        <li><a href="#anlaesse">Für wen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a href="#kontakt" class="btn btn-primary nav-cta">Jetzt anfragen</a>
+    <button class="burger" aria-label="Menü" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" style="display:none; padding:0 28px 18px;">
+    <a href="#ablauf" style="display:block;padding:8px 0;text-decoration:none;color:var(--ink);">So geht's</a>
+    <a href="#anlaesse" style="display:block;padding:8px 0;text-decoration:none;color:var(--ink);">Für wen</a>
+    <a href="#kontakt" style="display:block;padding:8px 0;text-decoration:none;color:var(--ink);">Kontakt</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>
+          Kleine Kugel.
+        </p>
+        <h2>GROSSE <span class="grad-text">FREUDE.</span></h2>
+        <p class="lead">Die charmante Überraschung für eure Hochzeit oder euer Event — ein Gacha-Automat zum Mieten, liebevoll befüllt und ein echter Hingucker für eure Gäste.</p>
+        <div class="hero-ctas">
+          <a href="#kontakt" class="btn btn-primary">Jetzt anfragen</a>
+          <a href="#ablauf" class="btn btn-ghost">So funktioniert's</a>
+        </div>
+
+        <div class="hero-features">
+          <div class="hf">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg></span>
+            <div><strong>Das Highlight für eure Gäste</strong><span>Ein interaktives Erlebnis zum Erinnern.</span></div>
+          </div>
+          <div class="hf">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 12h18M12 8v13M8 8a2.5 2.5 0 0 1 0-5c1.5 0 4 1.5 4 5M16 8a2.5 2.5 0 0 0 0-5c-1.5 0-4 1.5-4 5"/></svg></span>
+            <div><strong>Individuell befüllt</strong><span>Kleine Geschenke, ganz nach eurem Wunsch.</span></div>
+          </div>
+          <div class="hf">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="4"/><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/></svg></span>
+            <div><strong>Ein echter Hingucker</strong><span>Stilvoll & kompakt, drinnen wie draußen.</span></div>
+          </div>
+          <div class="hf">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4z"/><path d="M14 6l3-3 3 3-3 3"/></svg></span>
+            <div><strong>Für jeden Anlass</strong><span>Hochzeit, Firmenfeier, Geburtstag & mehr.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="frame">
+          <img src="hero.png" alt="Gacha-Automat mit bunten Kapseln, dekoriert auf einem Hochzeitstisch">
+        </div>
+        <div class="badge-tag">
+          <div class="string"></div>
+          <div class="card">
+            <p>Für eine Kugel</p>
+            <div class="seal">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>
+            </div>
+            <p>aus Automaten</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="strip">
+    <div class="wrap">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>Mit Liebe zum Detail</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.9H21l-5.6 4.3 2.1 7-5.5-4.4-5.5 4.4 2.1-7L3 8.9h6.6z"/></svg>Hochwertig & zuverlässig</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>Persönlicher Service</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Flexible Buchung</span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="warum">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>Warum Kleine Kugel</p>
+        <h2>Eine kleine Kapsel, eine große Überraschung</h2>
+        <p>Unsere Automaten bringen einen Hauch Nostalgie und jede Menge Freude auf eure Feier — kuratiert, hochwertig und mit Liebe zum Detail befüllt.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg></span>
+          <div><h3>Das Highlight für eure Gäste</h3><p>Ein interaktives Erlebnis, das begeistert und lange in Erinnerung bleibt.</p></div>
+        </div>
+        <div class="feature-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 12h18M12 8v13M8 8a2.5 2.5 0 0 1 0-5c1.5 0 4 1.5 4 5M16 8a2.5 2.5 0 0 0 0-5c-1.5 0-4 1.5-4 5"/></svg></span>
+          <div><h3>Individuell & mit Liebe befüllt</h3><p>Kleine Geschenke, persönliche Botschaften oder Give-aways — ganz nach eurem Konzept.</p></div>
+        </div>
+        <div class="feature-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="4"/><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/></svg></span>
+          <div><h3>Perfekt für Hochzeiten & besondere Events</h3><p>Als Gästebespaßung, Dankeschön oder als Teil eures gesamten Konzepts.</p></div>
+        </div>
+        <div class="feature-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4z"/><path d="M14 6l3-3 3 3-3 3"/></svg></span>
+          <div><h3>Für jede Location ein Hingucker</h3><p>Stilvoll, kompakt und ein echter Blickfang — drinnen wie draußen.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section id="ablauf" class="steps-section">
+    <div class="wrap steps-grid">
+      <div class="steps-media">
+        <img src="steps.png" alt="Drei Schritte: Token nehmen, Münze einwerfen und drehen, Kugel entnehmen">
+      </div>
+      <div>
+        <p class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>So geht's</p>
+        <h2>In drei Schritten zur Überraschung</h2>
+        <ul class="step-list" style="margin-top:28px;">
+          <li>
+            <span class="step-num">1</span>
+            <div><h3>Token nehmen</h3><p>Jeder Gast nimmt den Token von seiner Platzkarte.</p></div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div><h3>Münze einwerfen & drehen</h3><p>Token einwerfen und am Griff bis zum Anschlag drehen.</p></div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div><h3>Kugel entnehmen & freuen</h3><p>Klappe öffnen, Kugel entnehmen und die Überraschung genießen.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- OCCASIONS -->
+  <section id="anlaesse">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>Für wen</p>
+        <h2>Für jeden besonderen Moment</h2>
+      </div>
+      <div class="occ-grid">
+        <div class="occ-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg></span>
+          <h3>Hochzeiten</h3>
+        </div>
+        <div class="occ-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="19" cy="7" r="2.4"/></svg></span>
+          <h3>Firmen- & Team-Events</h3>
+        </div>
+        <div class="occ-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.9H21l-5.6 4.3 2.1 7-5.5-4.4-5.5 4.4 2.1-7L3 8.9h6.6z"/></svg></span>
+          <h3>Geburtstage & private Feiern</h3>
+        </div>
+        <div class="occ-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg></span>
+          <h3>Messen & Sonderaktionen</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt" class="contact-section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>Interesse?</p>
+        <h2>Wir machen euer Event zu etwas Besonderem</h2>
+        <p>Jetzt anfragen & Termin sichern — wir melden uns schnellstmöglich mit einem passenden Angebot.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Sprecht uns an</h3>
+          <p>Erzählt uns kurz von eurem Event — Datum, Ort und ungefähre Gästezahl reichen für den Anfang völlig aus.</p>
+
+          <div class="contact-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <span><a href="mailto:mehrzusammensein@gmail.com">mehrzusammensein@gmail.com</a></span>
+          </div>
+          <div class="contact-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.1 3.4z"/></svg>
+            <span>+49 (0) 176 34 57 57 65</span>
+          </div>
+          <div class="contact-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18M3 12h18"/></svg>
+            <span>Dresden & Umgebung</span>
+          </div>
+
+          <div class="note-pill">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Antwort in der Regel innerhalb von 48 Stunden
+          </div>
+        </div>
+
+        <form class="request-form" id="requestForm">
+          <!-- Euer Web3Forms Access Key (kostenlos auf web3forms.com erstellen) -->
+          <input type="hidden" name="access_key" value="EUER-ACCESS-KEY-HIER-EINFUEGEN">
+          <input type="hidden" name="subject" value="Neue Anfrage über kleine-kugel.de">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="form-row two">
+            <div>
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required autocomplete="name">
+            </div>
+            <div>
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+          </div>
+          <div class="form-row two">
+            <div>
+              <label for="phone">Telefon <span class="opt">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+            <div>
+              <label for="date">Datum der Veranstaltung</label>
+              <input type="date" id="date" name="date">
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="type">Art der Veranstaltung</label>
+              <select id="type" name="type">
+                <option value="Hochzeit">Hochzeit</option>
+                <option value="Firmen- / Team-Event">Firmen- / Team-Event</option>
+                <option value="Private Feier">Private Feier</option>
+                <option value="Sonstiges">Sonstiges</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="guests">Ungefähre Gästezahl <span class="opt">(optional)</span></label>
+              <input type="number" id="guests" name="guests" min="1" placeholder="z. B. 80">
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="message">Eure Nachricht & Wünsche</label>
+              <textarea id="message" name="message" placeholder="Erzählt uns von eurem Event: Ort, Location, besondere Wünsche zur Befüllung ..."></textarea>
+            </div>
+          </div>
+          <div class="form-foot">
+            <button type="submit" class="btn btn-primary">Anfrage senden</button>
+            <small>Öffnet euer E-Mail-Programm mit vorausgefüllter Nachricht.</small>
+          </div>
+          <div id="formStatus" role="status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="divider-heart">
+      <span class="line"></span>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>
+      <span class="line"></span>
+    </div>
+    <div class="footer-inner">
+      <div>
+        <div class="logo" style="margin-bottom:6px;">Kleine <b>Kugel</b></div>
+        <p class="footer-copy">Gacha-Automaten-Vermietung für Hochzeiten & Events</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#ablauf">So geht's</a></li>
+        <li><a href="#anlaesse">Für wen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+    <p class="footer-copy" style="margin-top:22px;">© 2026 Kleine Kugel</p>
+  </div>
+</footer>
+
+<script>
+  var form = document.getElementById('requestForm');
+  var status = document.getElementById('formStatus');
+  var submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    if(!name || !email){
+      status.textContent = 'Bitte füllt mindestens Name und E-Mail aus.';
+      status.className = 'err';
+      return;
+    }
+
+    var accessKey = form.querySelector('input[name="access_key"]').value;
+    if(!accessKey || accessKey.indexOf('HIER-EINFUEGEN') !== -1){
+      status.textContent = 'Das Formular ist noch nicht eingerichtet (Web3Forms Access Key fehlt).';
+      status.className = 'err';
+      return;
+    }
+
+    var formData = new FormData(form);
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird gesendet …';
+    status.textContent = '';
+    status.className = '';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    })
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if (data.success) {
+          status.textContent = 'Danke für eure Anfrage! Wir melden uns innerhalb von 48 Stunden bei euch.';
+          status.className = 'ok';
+          form.reset();
+        } else {
+          status.textContent = 'Da ist etwas schiefgelaufen. Schreibt uns gern direkt an mehrzusammensein@gmail.com.';
+          status.className = 'err';
+        }
+      })
+      .catch(function(){
+        status.textContent = 'Da ist etwas schiefgelaufen. Schreibt uns gern direkt an mehrzusammensein@gmail.com.';
+        status.className = 'err';
+      })
+      .finally(function(){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Anfrage senden';
+      });
+  });
+</script>
+
+</body>
+</html>
