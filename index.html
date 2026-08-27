@@ -196,8 +196,8 @@
       <div class="price-entry">
         <div>
           <span class="price-entry-label">Nur der Automat</span>
-          <h3>Automaten-Miete ab <span class="grad-text">99&nbsp;€</span></h3>
-          <p>Ihr wollt selbst befüllen? Kein Problem — ihr bekommt den Automaten samt Token, ganz ohne Kugelinhalt oder Karten. Zzgl. Anfahrt (Preis auf Anfrage).</p>
+          <h3>Automaten-Miete ab <span class="grad-text base-price-echo">99&nbsp;€</span></h3>
+          <p>Ihr wollt selbst befüllen? Kein Problem — ihr bekommt den Automaten samt Token, ganz ohne Kugelinhalt oder Karten. Inklusive Kugelrückgabe: leere Kapseln nehmen wir zurück und befüllen sie neu. Zzgl. Anfahrt (Preis auf Anfrage).</p>
         </div>
         <a href="#kontakt" class="btn btn-primary">Verfügbarkeit anfragen</a>
       </div>
@@ -210,63 +210,97 @@
           <button type="button" class="calc-step" data-step="10" aria-label="Mehr Gäste">+</button>
         </div>
         <p class="price-calc-hint">Durchschnittlich haben deutsche Hochzeiten 60–80 Gäste — die Preise unten passen sich sofort an eure Zahl an.</p>
+
+        <div class="price-switches">
+          <div class="price-switch">
+            <label class="switch">
+              <input type="checkbox" id="weekendSwitch">
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+            </label>
+            <div class="price-switch-copy">
+              <span class="price-switch-title">Ganzes Wochenende (Fr.–So.)</span>
+              <span class="price-switch-sub">statt nur der Veranstaltungstag &middot; +40&nbsp;€</span>
+            </div>
+          </div>
+          <div class="price-switch">
+            <label class="switch">
+              <input type="checkbox" id="deliverySwitch">
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+            </label>
+            <div class="price-switch-copy">
+              <span class="price-switch-title">Lieferung &amp; Aufbau vor Ort</span>
+              <span class="price-switch-sub">statt Selbstabholung &middot; Preis auf Anfrage</span>
+            </div>
+          </div>
+        </div>
+        <p class="price-calc-note" id="deliveryNote" hidden>Für Lieferung &amp; Aufbau senden wir euch nach eurer Anfrage ein individuelles Angebot je nach Entfernung.</p>
       </div>
 
       <div class="price-grid">
         <div class="price-card" data-kugel="0.9" data-karte="0.75" data-setup="0">
           <span class="price-tier">Einfach</span>
-          <div class="price-amount">ab <strong class="price-value">215&nbsp;€</strong></div>
+          <div class="price-amount">ab <strong class="price-value">231&nbsp;€</strong></div>
           <p class="price-note">bei <span class="guest-echo">80</span> Gästen</p>
           <ul class="price-features">
-            <li>Automat inkl. Anfahrt (Beispielstrecke)</li>
+            <li>Automaten-Miete inklusive</li>
             <li>1 Kugel pro Gast — Sticker, Samen &amp; kleine Überraschungen</li>
             <li>Standard-Tischkarte mit Token-Halterung</li>
           </ul>
         </div>
         <div class="price-card price-card-highlight" data-kugel="1.5" data-karte="1.5" data-setup="25">
           <span class="price-tier">Standard</span>
-          <div class="price-amount">ab <strong class="price-value">348&nbsp;€</strong></div>
+          <div class="price-amount">ab <strong class="price-value">364&nbsp;€</strong></div>
           <p class="price-note">bei <span class="guest-echo">80</span> Gästen</p>
           <ul class="price-features">
-            <li>Automat inkl. Anfahrt (Beispielstrecke)</li>
+            <li>Automaten-Miete inklusive</li>
             <li>1 Kugel pro Gast — Armbänder, Tattoos &amp; mehr</li>
             <li>Personalisierte Karte mit Gästenamen, dient als Tischkarte</li>
           </ul>
         </div>
         <div class="price-card" data-kugel="3" data-karte="3" data-setup="120">
           <span class="price-tier">Premium</span>
-          <div class="price-amount">ab <strong class="price-value">683&nbsp;€</strong></div>
+          <div class="price-amount">ab <strong class="price-value">699&nbsp;€</strong></div>
           <p class="price-note">bei <span class="guest-echo">80</span> Gästen</p>
           <ul class="price-features">
-            <li>Automat inkl. Anfahrt (Beispielstrecke)</li>
+            <li>Automaten-Miete inklusive</li>
             <li>1 Kugel pro Gast — hochwertiger, individueller Inhalt</li>
             <li>Premium-Karte im Design eurer Hochzeitspapeterie</li>
           </ul>
         </div>
       </div>
-      <p class="price-footnote">Automaten-Miete und Beispiel-Anfahrt sind Pauschalen; die tatsächliche Anfahrt hängt von eurem Veranstaltungsort ab und wird individuell berechnet. Da wir als Kleinunternehmen nach § 19 UStG arbeiten, weisen wir keine Umsatzsteuer aus. Euer persönliches Angebot bekommt ihr unverbindlich über das Kontaktformular.</p>
+      <p class="price-footnote">Alle Preise verstehen sich zzgl. Anfahrt — die richtet sich nach eurem Veranstaltungsort und wird individuell auf Anfrage berechnet. Da wir als Kleinunternehmen nach § 19 UStG arbeiten, weisen wir keine Umsatzsteuer aus. Euer persönliches Angebot bekommt ihr unverbindlich über das Kontaktformular.</p>
     </div>
   </section>
 
   <script>
     (function(){
-      var MIETE = 60, ANFAHRT = 23;
+      var BASE_MIETE = 99, WEEKEND_SURCHARGE = 40;
       var input = document.getElementById('guestCalc');
       var cards = document.querySelectorAll('.price-card');
+      var weekendSwitch = document.getElementById('weekendSwitch');
+      var deliverySwitch = document.getElementById('deliverySwitch');
+      var deliveryNote = document.getElementById('deliveryNote');
+      var baseEchoEls = document.querySelectorAll('.base-price-echo');
       function fmt(n){
         return n.toLocaleString('de-DE', {maximumFractionDigits:0}) + '\u00A0€';
       }
       function recalc(){
         var g = parseInt(input.value, 10);
         if (isNaN(g) || g < 1) g = 1;
+        var surcharge = weekendSwitch.checked ? WEEKEND_SURCHARGE : 0;
+        var base = BASE_MIETE + surcharge;
+
         cards.forEach(function(card){
           var kugel = parseFloat(card.dataset.kugel);
           var karte = parseFloat(card.dataset.karte);
           var setup = parseFloat(card.dataset.setup);
-          var total = MIETE + ANFAHRT + (kugel * g) + (karte * g) + setup;
+          var total = base + (kugel * g) + (karte * g) + setup;
           card.querySelector('.price-value').textContent = fmt(Math.round(total));
           card.querySelector('.guest-echo').textContent = g;
         });
+
+        baseEchoEls.forEach(function(el){ el.textContent = fmt(base); });
+        deliveryNote.hidden = !deliverySwitch.checked;
       }
       input.addEventListener('input', recalc);
       document.querySelectorAll('.calc-step').forEach(function(btn){
@@ -277,6 +311,9 @@
           recalc();
         });
       });
+      weekendSwitch.addEventListener('change', recalc);
+      deliverySwitch.addEventListener('change', recalc);
+      recalc();
     })();
   </script>
 
@@ -294,7 +331,11 @@
         </details>
         <details class="faq-item">
           <summary>Liefert ihr den Automaten oder holen wir ihn ab?</summary>
-          <p>Beides ist möglich. Wir empfehlen die Selbstabholung, liefern und bauen den Automaten aber auch gerne bei euch vor Ort auf. Wir sind in Dresden & Umgebung unterwegs — die genauen Konditionen für Lieferung/Aufbau besprechen wir individuell mit euch.</p>
+          <p>Beides ist möglich. Wir empfehlen die Selbstabholung, liefern und bauen den Automaten aber auch gerne bei euch vor Ort auf. Wir sind in Dresden & Umgebung unterwegs — die genauen Konditionen für Lieferung/Aufbau besprechen wir individuell mit euch, die Anfahrt berechnen wir je nach Entfernung.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Warum kostet eine Wochenend-Miete mehr als ein Tag?</summary>
+          <p>Bei einer Buchung übers ganze Wochenende (z. B. Freitag bis Sonntag) ist der Automat mehrere Tage bei euch statt bei anderen Anfragen im Einsatz. Dafür berechnen wir einen moderaten Aufschlag von 40&nbsp;€ auf die Automaten-Miete.</p>
         </details>
         <details class="faq-item">
           <summary>Wie weit im Voraus sollten wir buchen?</summary>
