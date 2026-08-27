@@ -211,29 +211,17 @@
         </div>
         <p class="price-calc-hint">Durchschnittlich haben deutsche Hochzeiten 60–80 Gäste — die Preise unten passen sich sofort an eure Zahl an.</p>
 
-        <div class="price-switches">
-          <div class="price-switch">
-            <label class="switch">
-              <input type="checkbox" id="weekendSwitch">
-              <span class="switch-track"><span class="switch-thumb"></span></span>
-            </label>
-            <div class="price-switch-copy">
-              <span class="price-switch-title">Ganzes Wochenende (Fr.–So.)</span>
-              <span class="price-switch-sub">statt nur der Veranstaltungstag &middot; +40&nbsp;€</span>
-            </div>
+        <div class="weekend-toggle-wrap">
+          <span class="price-switch-title">Mietdauer</span>
+          <div class="weekend-toggle" id="weekendToggle" role="switch" aria-checked="false" tabindex="0">
+            <span class="weekend-toggle-option">Veranstaltungstag</span>
+            <span class="weekend-toggle-option">Ganzes Wochenende</span>
+            <span class="weekend-toggle-pill"></span>
           </div>
-          <div class="price-switch">
-            <label class="switch">
-              <input type="checkbox" id="deliverySwitch">
-              <span class="switch-track"><span class="switch-thumb"></span></span>
-            </label>
-            <div class="price-switch-copy">
-              <span class="price-switch-title">Lieferung &amp; Aufbau vor Ort</span>
-              <span class="price-switch-sub">statt Selbstabholung &middot; Preis auf Anfrage</span>
-            </div>
-          </div>
+          <span class="price-switch-sub">Ganzes Wochenende (Fr.–So.) &middot; +60&nbsp;€</span>
         </div>
-        <p class="price-calc-note" id="deliveryNote" hidden>Für Lieferung &amp; Aufbau senden wir euch nach eurer Anfrage ein individuelles Angebot je nach Entfernung.</p>
+
+        <p class="price-calc-note">Lieferung &amp; Aufbau vor Ort statt Selbstabholung? Gerne — Preis auf Anfrage.</p>
       </div>
 
       <div class="price-grid">
@@ -274,12 +262,11 @@
 
   <script>
     (function(){
-      var BASE_MIETE = 99, WEEKEND_SURCHARGE = 40;
+      var BASE_MIETE = 99, WEEKEND_SURCHARGE = 60;
       var input = document.getElementById('guestCalc');
       var cards = document.querySelectorAll('.price-card');
-      var weekendSwitch = document.getElementById('weekendSwitch');
-      var deliverySwitch = document.getElementById('deliverySwitch');
-      var deliveryNote = document.getElementById('deliveryNote');
+      var weekendToggle = document.getElementById('weekendToggle');
+      var weekendOn = false;
       var baseEchoEls = document.querySelectorAll('.base-price-echo');
       function fmt(n){
         return n.toLocaleString('de-DE', {maximumFractionDigits:0}) + '\u00A0€';
@@ -287,7 +274,7 @@
       function recalc(){
         var g = parseInt(input.value, 10);
         if (isNaN(g) || g < 1) g = 1;
-        var surcharge = weekendSwitch.checked ? WEEKEND_SURCHARGE : 0;
+        var surcharge = weekendOn ? WEEKEND_SURCHARGE : 0;
         var base = BASE_MIETE + surcharge;
 
         cards.forEach(function(card){
@@ -300,7 +287,12 @@
         });
 
         baseEchoEls.forEach(function(el){ el.textContent = fmt(base); });
-        deliveryNote.hidden = !deliverySwitch.checked;
+      }
+      function toggleWeekend(){
+        weekendOn = !weekendOn;
+        weekendToggle.classList.toggle('is-on', weekendOn);
+        weekendToggle.setAttribute('aria-checked', String(weekendOn));
+        recalc();
       }
       input.addEventListener('input', recalc);
       document.querySelectorAll('.calc-step').forEach(function(btn){
@@ -311,8 +303,10 @@
           recalc();
         });
       });
-      weekendSwitch.addEventListener('change', recalc);
-      deliverySwitch.addEventListener('change', recalc);
+      weekendToggle.addEventListener('click', toggleWeekend);
+      weekendToggle.addEventListener('keydown', function(e){
+        if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggleWeekend(); }
+      });
       recalc();
     })();
   </script>
@@ -335,7 +329,7 @@
         </details>
         <details class="faq-item">
           <summary>Warum kostet eine Wochenend-Miete mehr als ein Tag?</summary>
-          <p>Bei einer Buchung übers ganze Wochenende (z. B. Freitag bis Sonntag) ist der Automat mehrere Tage bei euch statt bei anderen Anfragen im Einsatz. Dafür berechnen wir einen moderaten Aufschlag von 40&nbsp;€ auf die Automaten-Miete.</p>
+          <p>Bei einer Buchung übers ganze Wochenende (z. B. Freitag bis Sonntag) ist der Automat mehrere Tage bei euch statt bei anderen Anfragen im Einsatz. Dafür berechnen wir einen moderaten Aufschlag von 60&nbsp;€ auf die Automaten-Miete.</p>
         </details>
         <details class="faq-item">
           <summary>Wie weit im Voraus sollten wir buchen?</summary>
