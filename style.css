@@ -325,29 +325,42 @@
   .calc-step:hover{ transform:scale(1.08); }
   .price-calc-hint{ margin:14px 0 0; font-size:0.86rem; color:var(--ink-soft); }
 
-  .price-switches{
+  .weekend-toggle-wrap{
     margin-top:28px; padding-top:24px; border-top:1px solid var(--line);
-    display:flex; flex-direction:column; gap:16px; text-align:left;
-    max-width:420px; margin-left:auto; margin-right:auto;
+    display:flex; flex-direction:column; align-items:center; gap:12px;
   }
-  .price-switch{ display:flex; align-items:center; gap:14px; }
-  .switch{ flex:none; display:inline-block; position:relative; width:46px; height:26px; }
-  .switch input{ position:absolute; opacity:0; width:100%; height:100%; margin:0; cursor:pointer; }
-  .switch-track{
-    position:absolute; inset:0; background:#E3D8EA; border-radius:999px; transition:background .2s ease;
+  .price-switch-title{
+    font-size:0.78rem; font-weight:800; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--purple-deep);
   }
-  .switch-thumb{
-    position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%;
-    background:#fff; box-shadow:0 2px 5px rgba(0,0,0,0.2); transition:transform .2s ease;
+  .weekend-toggle{
+    position:relative; display:inline-grid; grid-template-columns:1fr 1fr;
+    background:var(--paper); border:1.5px solid var(--line); border-radius:999px;
+    padding:5px; cursor:pointer; user-select:none; min-width:340px;
   }
-  .switch input:checked + .switch-track{ background:linear-gradient(100deg, var(--purple-deep), var(--pink)); }
-  .switch input:checked + .switch-track .switch-thumb{ transform:translateX(20px); }
-  .switch input:focus-visible + .switch-track{ outline:3px solid var(--purple); outline-offset:2px; }
-  .price-switch-copy{ display:flex; flex-direction:column; }
-  .price-switch-title{ font-weight:700; font-size:0.94rem; color:var(--ink); }
+  .weekend-toggle-option{
+    position:relative; z-index:2; text-align:center; padding:12px 18px;
+    font-weight:700; font-size:0.9rem; color:var(--ink-soft);
+    transition:color .25s ease;
+  }
+  .weekend-toggle-pill{
+    position:absolute; z-index:1; top:5px; left:5px;
+    width:calc(50% - 5px); height:calc(100% - 10px);
+    border-radius:999px;
+    background:linear-gradient(100deg, var(--purple-deep), var(--pink));
+    box-shadow:0 8px 18px -8px rgba(91,50,134,0.55);
+    transition:transform .3s cubic-bezier(.65,0,.35,1);
+  }
+  .weekend-toggle.is-on .weekend-toggle-pill{ transform:translateX(100%); }
+  .weekend-toggle-option:first-child{ color:#fff; }
+  .weekend-toggle.is-on .weekend-toggle-option:first-child{ color:var(--ink-soft); }
+  .weekend-toggle.is-on .weekend-toggle-option:last-child{ color:#fff; }
+  .weekend-toggle:focus-visible{ outline:3px solid var(--purple); outline-offset:3px; }
+  @media (max-width:480px){ .weekend-toggle{ min-width:0; width:100%; } .weekend-toggle-option{ padding:12px 8px; font-size:0.82rem; } }
+
   .price-switch-sub{ font-size:0.82rem; color:var(--ink-soft); }
   .price-calc-note{
-    max-width:420px; margin:14px auto 0; font-size:0.84rem; color:var(--purple-deep);
+    max-width:440px; margin:22px auto 0; font-size:0.84rem; color:var(--purple-deep);
     background:var(--pink-soft); border-radius:12px; padding:10px 16px; text-align:center;
   }
   .price-entry h3{ font-size:1.5rem; margin-bottom:8px; }
