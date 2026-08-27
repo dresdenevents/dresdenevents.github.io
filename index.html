@@ -16,6 +16,8 @@
       <ul class="nav-links">
         <li><a href="#ablauf">So geht's</a></li>
         <li><a href="#anlaesse">Für wen</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </nav>
@@ -27,6 +29,8 @@
   <div id="mobileNav" style="display:none; padding:0 28px 18px;">
     <a href="#ablauf" style="display:block;padding:8px 0;text-decoration:none;color:var(--ink);">So geht's</a>
     <a href="#anlaesse" style="display:block;padding:8px 0;text-decoration:none;color:var(--ink);">Für wen</a>
+    <a href="#preise" style="display:block;padding:8px 0;text-decoration:none;color:var(--ink);">Preise</a>
+    <a href="#faq" style="display:block;padding:8px 0;text-decoration:none;color:var(--ink);">FAQ</a>
     <a href="#kontakt" style="display:block;padding:8px 0;text-decoration:none;color:var(--ink);">Kontakt</a>
   </div>
 </header>
@@ -176,6 +180,138 @@
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg></span>
           <h3>Messen & Sonderaktionen</h3>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="preise" class="steps-section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>Preise</p>
+        <h2>Für jedes Budget die passende Lösung</h2>
+        <p>Vom puren Automaten zum Selbstbefüllen bis zum Rundum-sorglos-Paket mit personalisierten Karten.</p>
+      </div>
+
+      <div class="price-entry">
+        <div>
+          <span class="price-entry-label">Nur der Automat</span>
+          <h3>Automaten-Miete ab <span class="grad-text">99&nbsp;€</span></h3>
+          <p>Ihr wollt selbst befüllen? Kein Problem — ihr bekommt den Automaten samt Token, ganz ohne Kugelinhalt oder Karten. Zzgl. Anfahrt (Preis auf Anfrage).</p>
+        </div>
+        <a href="#kontakt" class="btn btn-primary">Verfügbarkeit anfragen</a>
+      </div>
+
+      <div class="price-calc">
+        <label for="guestCalc">Wie viele Gäste habt ihr ungefähr?</label>
+        <div class="price-calc-input">
+          <button type="button" class="calc-step" data-step="-10" aria-label="Weniger Gäste">–</button>
+          <input type="number" id="guestCalc" value="80" min="10" step="5" inputmode="numeric">
+          <button type="button" class="calc-step" data-step="10" aria-label="Mehr Gäste">+</button>
+        </div>
+        <p class="price-calc-hint">Durchschnittlich haben deutsche Hochzeiten 60–80 Gäste — die Preise unten passen sich sofort an eure Zahl an.</p>
+      </div>
+
+      <div class="price-grid">
+        <div class="price-card" data-kugel="0.9" data-karte="0.75" data-setup="0">
+          <span class="price-tier">Einfach</span>
+          <div class="price-amount">ab <strong class="price-value">215&nbsp;€</strong></div>
+          <p class="price-note">bei <span class="guest-echo">80</span> Gästen</p>
+          <ul class="price-features">
+            <li>Automat inkl. Anfahrt (Beispielstrecke)</li>
+            <li>1 Kugel pro Gast — Sticker, Samen &amp; kleine Überraschungen</li>
+            <li>Standard-Tischkarte mit Token-Halterung</li>
+          </ul>
+        </div>
+        <div class="price-card price-card-highlight" data-kugel="1.5" data-karte="1.5" data-setup="25">
+          <span class="price-tier">Standard</span>
+          <div class="price-amount">ab <strong class="price-value">348&nbsp;€</strong></div>
+          <p class="price-note">bei <span class="guest-echo">80</span> Gästen</p>
+          <ul class="price-features">
+            <li>Automat inkl. Anfahrt (Beispielstrecke)</li>
+            <li>1 Kugel pro Gast — Armbänder, Tattoos &amp; mehr</li>
+            <li>Personalisierte Karte mit Gästenamen, dient als Tischkarte</li>
+          </ul>
+        </div>
+        <div class="price-card" data-kugel="3" data-karte="3" data-setup="120">
+          <span class="price-tier">Premium</span>
+          <div class="price-amount">ab <strong class="price-value">683&nbsp;€</strong></div>
+          <p class="price-note">bei <span class="guest-echo">80</span> Gästen</p>
+          <ul class="price-features">
+            <li>Automat inkl. Anfahrt (Beispielstrecke)</li>
+            <li>1 Kugel pro Gast — hochwertiger, individueller Inhalt</li>
+            <li>Premium-Karte im Design eurer Hochzeitspapeterie</li>
+          </ul>
+        </div>
+      </div>
+      <p class="price-footnote">Automaten-Miete und Beispiel-Anfahrt sind Pauschalen; die tatsächliche Anfahrt hängt von eurem Veranstaltungsort ab und wird individuell berechnet. Da wir als Kleinunternehmen nach § 19 UStG arbeiten, weisen wir keine Umsatzsteuer aus. Euer persönliches Angebot bekommt ihr unverbindlich über das Kontaktformular.</p>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      var MIETE = 60, ANFAHRT = 23;
+      var input = document.getElementById('guestCalc');
+      var cards = document.querySelectorAll('.price-card');
+      function fmt(n){
+        return n.toLocaleString('de-DE', {maximumFractionDigits:0}) + '\u00A0€';
+      }
+      function recalc(){
+        var g = parseInt(input.value, 10);
+        if (isNaN(g) || g < 1) g = 1;
+        cards.forEach(function(card){
+          var kugel = parseFloat(card.dataset.kugel);
+          var karte = parseFloat(card.dataset.karte);
+          var setup = parseFloat(card.dataset.setup);
+          var total = MIETE + ANFAHRT + (kugel * g) + (karte * g) + setup;
+          card.querySelector('.price-value').textContent = fmt(Math.round(total));
+          card.querySelector('.guest-echo').textContent = g;
+        });
+      }
+      input.addEventListener('input', recalc);
+      document.querySelectorAll('.calc-step').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var step = parseInt(btn.dataset.step, 10);
+          var val = parseInt(input.value, 10) || 0;
+          input.value = Math.max(10, val + step);
+          recalc();
+        });
+      });
+    })();
+  </script>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 7.4 2.7 2.4-2.6 5-3.9 7.4-2.7 3 1.5 3.6 5 1.9 7.8C18.7 16.65 12 21 12 21z"/></svg>Häufige Fragen</p>
+        <h2>Gut zu wissen</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Für wie viele Gäste reicht eine Befüllung?</summary>
+          <p>Eine Standard-Befüllung ist auf 150 Gäste ausgelegt — eine Kugel pro Gast. Habt ihr mehr Gäste, füllen wir gegen Aufpreis gerne nach.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Liefert ihr den Automaten oder holen wir ihn ab?</summary>
+          <p>Beides ist möglich. Wir empfehlen die Selbstabholung, liefern und bauen den Automaten aber auch gerne bei euch vor Ort auf. Wir sind in Dresden & Umgebung unterwegs — die genauen Konditionen für Lieferung/Aufbau besprechen wir individuell mit euch.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Wie weit im Voraus sollten wir buchen?</summary>
+          <p>Bei personalisierten Karten oder Kugelinhalten (z. B. mit euren Namen) bitten wir um mindestens 4 Wochen Vorlauf. Für Standard-Pakete ohne Personalisierung reichen in der Regel 3 Wochen. Je früher ihr euch meldet, desto sicherer könnt ihr planen — besonders in der Hochzeitssaison.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Was passiert, wenn der Automat während des Events klemmt?</summary>
+          <p>Das kommt selten vor, aber falls doch: Ihr erreicht uns während eurer Veranstaltung telefonisch, und wir helfen euch direkt weiter.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Ist eine Kaution nötig?</summary>
+          <p>Ja, wir erheben eine Kaution von 100&nbsp;€. Sie deckt den Automaten sowie verlorene oder beschädigte Kugeln und Token ab. Läuft alles glatt, bekommt ihr sie bei Rückgabe des Automaten vollständig zurück. Die genauen Konditionen stehen im Mietvertrag.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Können wir den Kugelinhalt individuell zusammenstellen?</summary>
+          <p>Auf jeden Fall — das ist sogar unsere Spezialität. Von süßen Kleinigkeiten über Sticker bis zu personalisierten Schlüsselanhängern gestalten wir die Befüllung gerne passend zu eurem Event. Erzählt uns einfach von euren Wünschen im Anfrageformular.</p>
+        </details>
       </div>
     </div>
   </section>
