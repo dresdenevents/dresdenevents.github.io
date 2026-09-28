@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /specials/
+
+Sitemap: https://dresdenevents.github.io/sitemap.xml
