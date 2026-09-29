@@ -456,6 +456,8 @@
   textarea{ resize:vertical; min-height:110px; }
   .form-foot{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:6px;}
   .form-foot small{ color:var(--ink-soft); }
+  .form-privacy{ font-size:0.8rem; color:var(--ink-soft); margin-top:12px; line-height:1.5; }
+  .form-privacy a{ color:var(--ink-soft); }
   #formStatus{ margin-top:14px; font-size:0.9rem; }
   #formStatus.ok{ color:#3F7A4C; }
   #formStatus.err{ color:#B4443E; }
