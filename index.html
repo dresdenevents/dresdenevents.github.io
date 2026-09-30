@@ -304,6 +304,15 @@
         <p>Vom puren Automaten zum Selbstbefüllen bis zum Rundum-sorglos-Paket mit personalisierten Karten.</p>
       </div>
 
+      <div class="promo-banner">
+        <span class="promo-tag">Messeangebot</span>
+        <div class="promo-text">
+          <strong>10 % Rabatt auf alle Pakete — nur bis 31. Oktober!</strong>
+          <span>Die unten gezeigten Preise sind bereits der reduzierte Aktionspreis.</span>
+        </div>
+        <span class="promo-countdown">Noch bis 31.10.</span>
+      </div>
+
       <div class="price-calc">
         <label for="guestCalc">Wie viele Gäste habt ihr ungefähr?</label>
         <div class="price-calc-input">
@@ -323,7 +332,7 @@
       <div class="price-grid">
         <div class="price-card" data-kugel="0.9" data-karte="0.75" data-setup="0">
           <span class="price-tier">Einfach</span>
-          <div class="price-amount">ab <strong class="price-value">231&nbsp;€</strong></div>
+          <div class="price-amount"><s class="price-original-value">254&nbsp;€</s><br>ab <strong class="price-value">231&nbsp;€</strong></div>
           <p class="price-note">bei <span class="guest-echo">80</span> Gästen</p>
           <ul class="price-features">
             <li>Automaten-Miete inklusive</li>
@@ -333,7 +342,7 @@
         </div>
         <div class="price-card price-card-highlight" data-kugel="1.5" data-karte="1.5" data-setup="25">
           <span class="price-tier">Standard</span>
-          <div class="price-amount">ab <strong class="price-value">364&nbsp;€</strong></div>
+          <div class="price-amount"><s class="price-original-value">400&nbsp;€</s><br>ab <strong class="price-value">364&nbsp;€</strong></div>
           <p class="price-note">bei <span class="guest-echo">80</span> Gästen</p>
           <ul class="price-features">
             <li>Automaten-Miete inklusive</li>
@@ -343,7 +352,7 @@
         </div>
         <div class="price-card" data-kugel="3" data-karte="3" data-setup="120">
           <span class="price-tier">Premium</span>
-          <div class="price-amount">ab <strong class="price-value">699&nbsp;€</strong></div>
+          <div class="price-amount"><s class="price-original-value">769&nbsp;€</s><br>ab <strong class="price-value">699&nbsp;€</strong></div>
           <p class="price-note">bei <span class="guest-echo">80</span> Gästen</p>
           <ul class="price-features">
             <li>Automaten-Miete inklusive</li>
@@ -358,7 +367,7 @@
        <div class="price-entry">
         <div>
           <span class="price-entry-label">Nur der Automat</span>
-          <h3>Automaten-Miete ab <span class="grad-text base-price-echo">99&nbsp;€</span></h3>
+          <h3>Automaten-Miete ab <s class="base-original-echo" style="color:var(--ink-soft);font-size:0.85em;font-weight:400;">109&nbsp;€</s> <span class="grad-text base-price-echo">99&nbsp;€</span></h3>
           <p>Ihr wollt selbst befüllen? Kein Problem — ihr bekommt den Automaten samt Token, ganz ohne Kugelinhalt oder Karten. Inklusive Kugelrückgabe: leere Kapseln nehmen wir zurück und befüllen sie neu. Zzgl. Anfahrt (Preis auf Anfrage).</p>
         </div>
         <a href="#kontakt" class="btn btn-primary">Verfügbarkeit anfragen</a>
@@ -376,6 +385,7 @@
       var weekendToggle = document.getElementById('weekendToggle');
       var weekendOn = false;
       var baseEchoEls = document.querySelectorAll('.base-price-echo');
+      var baseOriginalEls = document.querySelectorAll('.base-original-echo');
       function fmt(n){
         return n.toLocaleString('de-DE', {maximumFractionDigits:0}) + '\u00A0€';
       }
@@ -391,10 +401,12 @@
           var setup = parseFloat(card.dataset.setup);
           var total = base + (kugel * g) + (karte * g) + setup;
           card.querySelector('.price-value').textContent = fmt(Math.round(total));
+          card.querySelector('.price-original-value').textContent = fmt(Math.round(total * 1.1));
           card.querySelector('.guest-echo').textContent = g;
         });
 
         baseEchoEls.forEach(function(el){ el.textContent = fmt(base); });
+        baseOriginalEls.forEach(function(el){ el.textContent = fmt(Math.round(base * 1.1)); });
       }
       function toggleWeekend(){
         weekendOn = !weekendOn;

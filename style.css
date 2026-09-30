@@ -366,6 +366,29 @@
   .price-entry h3{ font-size:1.5rem; margin-bottom:8px; }
   .price-entry p{ margin:0; color:var(--ink-soft); max-width:52ch; font-size:0.94rem; }
 
+  .promo-banner{
+    display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+    background:linear-gradient(135deg, var(--purple-deep) 0%, #c0417a 100%);
+    color:#fff; border-radius:16px; padding:18px 24px; margin-bottom:32px;
+  }
+  .promo-tag{
+    flex-shrink:0; background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.4);
+    border-radius:999px; padding:4px 12px; font-size:0.75rem; font-weight:800;
+    letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap;
+  }
+  .promo-text{ flex:1; min-width:0; }
+  .promo-text strong{ display:block; font-size:1rem; margin-bottom:2px; }
+  .promo-text span{ font-size:0.85rem; opacity:0.85; }
+  .promo-countdown{
+    flex-shrink:0; background:rgba(255,255,255,0.15); border-radius:10px;
+    padding:6px 14px; font-size:0.82rem; font-weight:700; white-space:nowrap;
+  }
+
+  .price-original-value{
+    font-size:0.95rem; font-weight:400; color:var(--ink-soft);
+    text-decoration:line-through; opacity:0.65;
+  }
+
   .price-grid{ display:grid; grid-template-columns:1fr; gap:20px; }
   @media (min-width:820px){ .price-grid{ grid-template-columns:repeat(3,1fr); } }
   .price-card{
