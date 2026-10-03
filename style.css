@@ -464,6 +464,16 @@
     margin-top:24px; display:inline-flex; align-items:center; gap:8px;
     background:rgba(255,255,255,0.14); padding:8px 14px; border-radius:999px; font-size:0.82rem;
   }
+  .giveaway-box{
+    margin-top:28px; padding:16px 18px; border-radius:14px;
+    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25);
+  }
+  .giveaway-label{
+    display:inline-flex; align-items:center; gap:6px; margin:0 0 8px;
+    font-size:0.72rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase;
+    opacity:0.85;
+  }
+  .giveaway-box p{ font-size:0.88rem; margin:0 0 0; opacity:0.92; }
 
   form.request-form{
     background:var(--paper); border:1px solid var(--line);
