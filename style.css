@@ -367,9 +367,12 @@
   .price-entry p{ margin:0; color:var(--ink-soft); max-width:52ch; font-size:0.94rem; }
 
   .promo-banner{
-    display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+    display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
     background:linear-gradient(135deg, var(--purple-deep) 0%, #c0417a 100%);
-    color:#fff; border-radius:16px; padding:18px 24px; margin-bottom:32px;
+    color:#fff; border-radius:16px; padding:18px 20px; margin-bottom:32px;
+  }
+  @media (min-width:640px){
+    .promo-banner{ flex-direction:row; text-align:left; gap:16px; padding:18px 24px; }
   }
   .promo-tag{
     flex-shrink:0; background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.4);
