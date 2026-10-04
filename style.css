@@ -514,32 +514,30 @@
 
   /* ---------- Contest Steps ---------- */
   .contest-steps{
-    margin-top:48px; padding:28px 32px; border-radius:20px;
-    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
+    margin-bottom:36px; padding:24px 28px; border-radius:20px;
+    background:rgba(255,255,255,0.95); border:1px solid rgba(255,255,255,0.3);
   }
   .contest-steps-title{
-    display:flex; align-items:center; gap:7px; margin:0 0 20px;
-    font-size:0.78rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase;
-    color:#fff; opacity:0.8;
+    display:flex; align-items:center; gap:7px; margin:0 0 18px;
+    font-size:0.75rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--purple-deep);
   }
   .contest-step-list{
     list-style:none; margin:0; padding:0;
-    display:grid; grid-template-columns:1fr; gap:16px;
+    display:grid; grid-template-columns:1fr; gap:14px;
   }
   @media (min-width:640px){
     .contest-step-list{ grid-template-columns:repeat(3,1fr); gap:24px; }
   }
-  .contest-step-list li{
-    display:flex; gap:14px; align-items:flex-start;
-  }
+  .contest-step-list li{ display:flex; gap:14px; align-items:flex-start; }
   .contest-step-num{
     flex-shrink:0; width:28px; height:28px; border-radius:50%;
-    background:rgba(255,255,255,0.2); color:#fff;
+    background:linear-gradient(135deg, var(--purple-deep), #c0417a); color:#fff;
     font-size:0.82rem; font-weight:800;
     display:flex; align-items:center; justify-content:center;
   }
-  .contest-step-list strong{ display:block; color:#fff; font-size:0.92rem; margin-bottom:3px; }
-  .contest-step-list span{ font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.4; }
+  .contest-step-list strong{ display:block; color:var(--ink); font-size:0.92rem; margin-bottom:3px; }
+  .contest-step-list span{ font-size:0.82rem; color:var(--ink-soft); line-height:1.4; }
 
   /* ---------- Footer ---------- */
   footer{
