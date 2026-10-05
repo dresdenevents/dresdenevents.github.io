@@ -92,20 +92,6 @@
     *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
   }
 
-  /* ---------- Announcement Bar ---------- */
-  .announce-bar{
-    display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
-    background:linear-gradient(90deg, var(--purple-deep) 0%, #c0417a 100%);
-    color:#fff; text-decoration:none; padding:9px 20px; font-size:0.84rem; text-align:center;
-    transition:opacity .15s;
-  }
-  .announce-bar:hover{ opacity:0.92; }
-  .announce-bar strong{ font-weight:800; }
-  .announce-cta{
-    flex-shrink:0; background:rgba(255,255,255,0.2); border-radius:999px;
-    padding:3px 10px; font-weight:700; font-size:0.78rem; white-space:nowrap;
-  }
-
   /* ---------- Nav ---------- */
   header.nav{
     position:sticky; top:0; z-index:50;
@@ -478,16 +464,6 @@
     margin-top:24px; display:inline-flex; align-items:center; gap:8px;
     background:rgba(255,255,255,0.14); padding:8px 14px; border-radius:999px; font-size:0.82rem;
   }
-  .giveaway-box{
-    margin-top:28px; padding:16px 18px; border-radius:14px;
-    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25);
-  }
-  .giveaway-label{
-    display:inline-flex; align-items:center; gap:6px; margin:0 0 8px;
-    font-size:0.72rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase;
-    opacity:0.85;
-  }
-  .giveaway-box p{ font-size:0.88rem; margin:0 0 0; opacity:0.92; }
 
   form.request-form{
     background:var(--paper); border:1px solid var(--line);
@@ -512,33 +488,6 @@
   #formStatus.ok{ color:#3F7A4C; }
   #formStatus.err{ color:#B4443E; }
 
-  /* ---------- Contest Steps ---------- */
-  .contest-steps{
-    margin-bottom:36px; padding:24px 28px; border-radius:20px;
-    background:linear-gradient(135deg, var(--purple-deep) 0%, #c0417a 100%);
-    color:#fff;
-  }
-  .contest-steps-title{
-    display:flex; align-items:center; gap:7px; margin:0 0 18px;
-    font-size:0.75rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase;
-    color:#fff; opacity:0.8;
-  }
-  .contest-step-list{
-    list-style:none; margin:0; padding:0;
-    display:grid; grid-template-columns:1fr; gap:14px;
-  }
-  @media (min-width:640px){
-    .contest-step-list{ grid-template-columns:repeat(3,1fr); gap:24px; }
-  }
-  .contest-step-list li{ display:flex; gap:14px; align-items:flex-start; }
-  .contest-step-num{
-    flex-shrink:0; width:28px; height:28px; border-radius:50%;
-    background:rgba(255,255,255,0.25); color:#fff;
-    font-size:0.82rem; font-weight:800;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .contest-step-list strong{ display:block; color:#fff; font-size:0.92rem; margin-bottom:3px; }
-  .contest-step-list span{ font-size:0.82rem; color:rgba(255,255,255,0.8); line-height:1.4; }
 
   /* ---------- Footer ---------- */
   footer{
