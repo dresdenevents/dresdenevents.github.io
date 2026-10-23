@@ -1,0 +1,149 @@
+name: TYPO3 → Static Export
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "typo3-source/**"
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: pdo_sqlite, mbstring, intl, gd, zip, xml, curl
+
+      - name: Install Composer dependencies
+        working-directory: typo3-source
+        run: composer install --no-dev --optimize-autoloader --no-interaction
+
+      - name: Prepare runtime directories
+        working-directory: typo3-source
+        run: |
+          mkdir -p var/cache var/labels var/lock var/log var/session
+          mkdir -p public/typo3temp/assets
+          chmod -R 777 var/ public/typo3temp/
+
+      - name: Run TYPO3 setup
+        working-directory: typo3-source
+        env:
+          TYPO3_ADMIN_PASSWORD: ${{ secrets.TYPO3_ADMIN_PASSWORD }}
+        run: |
+          php -d display_errors=1 vendor/bin/typo3 setup \
+            --no-interaction \
+            --server-type=apache \
+            --driver=sqlite \
+            --dbname=./var/typo3.sqlite \
+            --admin-username=admin \
+            --admin-user-password="${TYPO3_ADMIN_PASSWORD}" \
+            --admin-email=odenwald91@gmail.com \
+            --project-name="Dresden Events Demo" \
+            --create-site="http://localhost:8080" \
+            --force > /tmp/typo3setup.log 2>&1
+          cat /tmp/typo3setup.log
+
+      - name: Write additional.php overrides
+        working-directory: typo3-source
+        run: |
+          cat > config/system/additional.php << 'PHP'
+          <?php
+          $GLOBALS['TYPO3_CONF_VARS']['SYS']['trustedHostsPattern'] = '.*';
+          $GLOBALS['TYPO3_CONF_VARS']['SYS']['devIPmask'] = '*';
+          $GLOBALS['TYPO3_CONF_VARS']['SYS']['displayErrors'] = 1;
+          $GLOBALS['TYPO3_CONF_VARS']['GFX']['processor_enabled'] = false;
+          PHP
+          echo "settings.php DB config:"
+          grep -A5 "pdo_sqlite\|driver\|path" config/system/settings.php | head -10
+
+      - name: Fix site base URL for CI
+        working-directory: typo3-source
+        run: |
+          find config/sites -name "config.yaml" -exec \
+            sed -i "s|base:.*ddev\.site.*|base: 'http://localhost:8080'|g" {} \;
+          cat config/sites/*/config.yaml
+
+      - name: Seed homepage page in SQLite
+        working-directory: typo3-source
+        run: |
+          SQLITE_FILE=$(find var -name "*.sqlite" 2>/dev/null | head -1)
+          echo "SQLite file: $SQLITE_FILE"
+          if [ -z "$SQLITE_FILE" ]; then
+            echo "No SQLite file found!"; ls -la var/; exit 1
+          fi
+          php -r "
+            \$db = new PDO('sqlite:$SQLITE_FILE');
+            \$tables = \$db->query(\"SELECT name FROM sqlite_master WHERE type='table' AND name='pages'\")->fetchColumn();
+            if (!\$tables) { echo 'No pages table yet, skipping.'; exit(0); }
+            \$now = time();
+            \$db->exec(\"INSERT OR IGNORE INTO pages
+              (uid, pid, title, slug, doktype, is_siteroot, hidden, deleted, sorting, tstamp, crdate)
+              VALUES (1, 0, 'Dresden Events Demo', '/', 1, 1, 0, 0, 128, \$now, \$now)\");
+            echo 'Pages: ' . \$db->query('SELECT COUNT(*) FROM pages')->fetchColumn() . PHP_EOL;
+          "
+
+      - name: Start PHP built-in server
+        working-directory: typo3-source
+        run: |
+          cat > public/router.php << 'PHP'
+          <?php
+          $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+          $file = __DIR__ . $path;
+          if ($path !== '/' && is_file($file)) { return false; }
+          require __DIR__ . '/index.php';
+          PHP
+          nohup php -d display_errors=0 -S 0.0.0.0:8080 -t public/ public/router.php > /tmp/php-server.log 2>&1 &
+          disown $!
+          sleep 3
+          HTTP=$(curl -s http://localhost:8080/ -o /tmp/typo3_response.html -w "%{http_code}")
+          echo "HTTP $HTTP"
+          if [ "$HTTP" != "200" ]; then
+            echo "--- Response (first 30 lines) ---"
+            head -30 /tmp/typo3_response.html
+          fi
+
+      - name: Crawl static site
+        run: |
+          mkdir -p _crawl
+          wget \
+            --mirror \
+            --convert-links \
+            --adjust-extension \
+            --page-requisites \
+            --no-parent \
+            --no-verbose \
+            --directory-prefix=_crawl \
+            --reject="*.php" \
+            --exclude-directories="/typo3,/typo3temp" \
+            http://localhost:8080/ 2>&1 || true
+          echo "Crawled HTML files:"
+          find _crawl -name "*.html" | head -20
+
+      - name: Copy to typo3-demo/
+        run: |
+          CRAWLED=$(find _crawl -maxdepth 1 -name "localhost*" -type d | head -1)
+          if [ -z "$CRAWLED" ]; then
+            echo "ERROR: No crawled output found"; find _crawl/; exit 1
+          fi
+          echo "Crawled dir: $CRAWLED"
+          rm -rf typo3-demo
+          mkdir -p typo3-demo
+          cp -r "$CRAWLED/." typo3-demo/
+          echo "Deployed $(find typo3-demo -type f | wc -l) files to typo3-demo/"
+
+      - name: Commit and push
+        run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
+          git add typo3-demo
+          git diff --cached --quiet && echo "No changes to deploy." && exit 0
+          git commit -m "chore: TYPO3 static export $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
