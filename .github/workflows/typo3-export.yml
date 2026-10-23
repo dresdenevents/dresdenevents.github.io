@@ -130,14 +130,16 @@ jobs:
       - name: Copy to typo3-demo/
         run: |
           CRAWLED=$(find _crawl -maxdepth 1 -name "localhost*" -type d | head -1)
-          if [ -z "$CRAWLED" ]; then
-            echo "ERROR: No crawled output found"; find _crawl/; exit 1
-          fi
-          echo "Crawled dir: $CRAWLED"
+          git add typo3-demo
+          git diff --cached --quiet && echo "No changes to deploy." && exit 0
+          git commit -m "chore: TYPO3 static export $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
+
+      - name: Copy original HTML to typo3-demo/SONS
+        run: |
           mkdir -p typo3-demo/SONS
-          mkdir -p typo3-demo
-          cp -r "$CRAWLED/." typo3-demo/SONS/
-          echo "Deployed $(find typo3-demo -type f | wc -l) files to typo3-demo/"
+          cp typo3-source/packages/sons_site/.claude/original.html typo3-demo/SONS/index.html
+          echo "Deployed original HTML to typo3-demo/SONS/"
 
       - name: Commit and push
         run: |
@@ -145,5 +147,5 @@ jobs:
           git config user.name "GitHub Actions"
           git add typo3-demo
           git diff --cached --quiet && echo "No changes to deploy." && exit 0
-          git commit -m "chore: TYPO3 static export $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git commit -m "chore: SONS demo export $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
