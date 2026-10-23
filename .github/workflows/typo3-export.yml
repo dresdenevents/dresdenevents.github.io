@@ -36,50 +36,22 @@ jobs:
           php-version: "8.3"
           extensions: mysqli, mbstring, intl, gd, zip, xml, curl
 
+      - name: Wait for MariaDB
+        run: |
+          for i in {1..30}; do
+            mysql -h 127.0.0.1 -u typo3 -ptypo3 -e "SELECT 1" typo3 2>/dev/null && echo "DB ready" && break
+            echo "Waiting for DB... ($i)"
+            sleep 2
+          done
+
       - name: Install Composer dependencies
         working-directory: typo3-source
         run: composer install --no-dev --optimize-autoloader --no-interaction
 
-      - name: Write TYPO3 settings.php
-        working-directory: typo3-source
-        run: |
-          mkdir -p config/system
-          cat > config/system/settings.php << 'PHP'
-          <?php
-          return [
-              'DB' => [
-                  'Connections' => [
-                      'Default' => [
-                          'charset'  => 'utf8mb4',
-                          'dbname'   => 'typo3',
-                          'driver'   => 'mysqli',
-                          'host'     => '127.0.0.1',
-                          'password' => 'typo3',
-                          'port'     => 3306,
-                          'user'     => 'typo3',
-                          'tableoptions' => [
-                              'charset' => 'utf8mb4',
-                              'collate' => 'utf8mb4_unicode_ci',
-                          ],
-                      ],
-                  ],
-              ],
-              'SYS' => [
-                  'encryptionKey' => '${{ secrets.TYPO3_ENCRYPTION_KEY }}',
-                  'trustedHostsPattern' => '.*',
-                  'devIPmask' => '*',
-                  'displayErrors' => 0,
-              ],
-              'GFX' => [
-                  'processor_enabled' => false,
-              ],
-          ];
-          PHP
-
       - name: Set up TYPO3
         working-directory: typo3-source
         run: |
-          php vendor/bin/typo3 setup \
+          php -d display_errors=1 vendor/bin/typo3 setup \
             --no-interaction \
             --server-type=apache \
             --driver=mysqli \
@@ -93,7 +65,19 @@ jobs:
             --admin-email=odenwald91@gmail.com \
             --project-name="Dresden Events Demo" \
             --create-site="http://localhost:8080" \
-            --force 2>&1 || true
+            --force > /tmp/typo3setup.log 2>&1 || true
+          cat /tmp/typo3setup.log
+
+      - name: Fix settings after setup
+        working-directory: typo3-source
+        run: |
+          php -r "
+            \$cfg = include 'config/system/settings.php';
+            \$cfg['SYS']['encryptionKey'] = '${{ secrets.TYPO3_ENCRYPTION_KEY }}';
+            \$cfg['SYS']['trustedHostsPattern'] = '.*';
+            \$cfg['GFX']['processor_enabled'] = false;
+            file_put_contents('config/system/settings.php', '<?php return ' . var_export(\$cfg, true) . ';');
+          "
 
       - name: Import content DB dump (optional)
         working-directory: typo3-source
