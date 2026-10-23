@@ -52,7 +52,7 @@ jobs:
                   'Connections' => [
                       'Default' => [
                           'driver' => 'pdo_sqlite',
-                          'path'   => realpath(__DIR__ . '/../../var') . '/typo3.sqlite',
+                          'path'   => __DIR__ . '/../../var/typo3.sqlite',
                       ],
                   ],
               ],
@@ -75,7 +75,7 @@ jobs:
           php -d display_errors=1 vendor/bin/typo3 setup \
             --no-interaction \
             --server-type=apache \
-            --driver=pdo_sqlite \
+            --driver=sqlite \
             --dbname=./var/typo3.sqlite \
             --admin-username=admin \
             --admin-user-password="${TYPO3_ADMIN_PASSWORD}" \
