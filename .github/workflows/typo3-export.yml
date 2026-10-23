@@ -100,7 +100,8 @@ jobs:
           if ($path !== '/' && is_file($file)) { return false; }
           require __DIR__ . '/index.php';
           PHP
-          php -d display_errors=0 -S 0.0.0.0:8080 -t public/ public/router.php &
+          nohup php -d display_errors=0 -S 0.0.0.0:8080 -t public/ public/router.php > /tmp/php-server.log 2>&1 &
+          disown $!
           sleep 3
           HTTP=$(curl -s http://localhost:8080/ -o /tmp/typo3_response.html -w "%{http_code}")
           echo "HTTP $HTTP"
