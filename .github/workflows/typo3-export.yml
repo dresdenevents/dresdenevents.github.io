@@ -129,13 +129,11 @@ jobs:
 
       - name: Copy to typo3-demo/
         run: |
-          CRAWLED="_crawl/localhost+8080"
-          if [ ! -d "$CRAWLED" ]; then
-            echo "ERROR: No crawled output at $CRAWLED"
-            echo "Contents of _crawl/:"
-            find _crawl/ | head -20
-            exit 1
+          CRAWLED=$(find _crawl -maxdepth 1 -name "localhost*" -type d | head -1)
+          if [ -z "$CRAWLED" ]; then
+            echo "ERROR: No crawled output found"; find _crawl/; exit 1
           fi
+          echo "Crawled dir: $CRAWLED"
           rm -rf typo3-demo
           mkdir -p typo3-demo
           cp -r "$CRAWLED/." typo3-demo/
