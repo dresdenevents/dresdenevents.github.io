@@ -67,3 +67,5 @@ GPL-2.0 or later
 
 ## SONS Landingpage
 TYPO3-based landing page for SONS vibration monitoring.
+## SONS - Vibration Monitoring Landingpage
+Demo: https://dresdenevents.github.io/typo3-demo/SONS/
