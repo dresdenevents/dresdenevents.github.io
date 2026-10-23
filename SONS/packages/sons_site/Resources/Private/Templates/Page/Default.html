@@ -1,0 +1,15 @@
+{namespace f=TYPO3\CMS\Fluid\ViewHelpers}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{data.title}</title>
+    <f:cObject typoscriptObjectPath="lib.contentElement" />
+    <link rel="stylesheet" href="{f:uri.resource(path: 'Css/main.css')}">
+</head>
+<body>
+    <f:render section="Content" />
+    <script src="{f:uri.resource(path: 'Js/main.js')}"></script>
+</body>
+</html>

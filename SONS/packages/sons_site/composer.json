@@ -1,0 +1,20 @@
+{
+    "name": "sons/site",
+    "type": "typo3-cms-extension",
+    "description": "SONS Site Package - Custom theme for SONS Landingpage",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "typo3/cms-core": "^13.0",
+        "typo3/cms-fluid-styled-content": "^13.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sons\\SonsSite\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "sons_site"
+        }
+    }
+}

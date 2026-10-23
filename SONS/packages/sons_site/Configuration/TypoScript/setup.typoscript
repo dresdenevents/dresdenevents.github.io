@@ -1,0 +1,54 @@
+plugin.tx_fluidstyledcontent {
+  settings {
+    media {
+      imageLinkWrap = 1
+    }
+  }
+}
+
+lib.contentElement {
+  templateRootPaths.200 = EXT:sons_site/Resources/Private/Templates/
+  partialRootPaths.200 = EXT:sons_site/Resources/Private/Partials/
+  layoutRootPaths.200 = EXT:sons_site/Resources/Private/Layouts/
+}
+
+page = PAGE
+page {
+  typeNum = 0
+
+  10 = FLUIDTEMPLATE
+  10 {
+    file = EXT:sons_site/Resources/Private/Templates/Page/Landingpage.html
+
+    layoutRootPaths {
+      0 = EXT:sons_site/Resources/Private/Layouts/
+    }
+
+    partialRootPaths {
+      0 = EXT:sons_site/Resources/Private/Partials/
+    }
+
+    templateRootPaths {
+      0 = EXT:sons_site/Resources/Private/Templates/
+    }
+  }
+
+  meta {
+    viewport = width=device-width, initial-scale=1
+  }
+
+  includeCSS {
+    sons_main = EXT:sons_site/Resources/Public/Css/main.css
+  }
+
+  includeJSFooter {
+    sons_main = EXT:sons_site/Resources/Public/Js/main.js
+  }
+}
+
+config {
+  renderCharset = utf-8
+  metaCharset = utf-8
+  language = de
+  locale_all = de_DE.UTF-8
+}

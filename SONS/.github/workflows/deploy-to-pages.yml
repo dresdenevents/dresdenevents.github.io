@@ -1,0 +1,137 @@
+name: Export TYPO3 → GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    services:
+      db:
+        image: mariadb:11
+        env:
+          MYSQL_DATABASE: typo3
+          MYSQL_USER: typo3
+          MYSQL_PASSWORD: typo3
+          MYSQL_ROOT_PASSWORD: root
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: mysqli, mbstring, intl, gd, zip, xml
+
+      - name: Install dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Write TYPO3 settings
+        run: |
+          mkdir -p config/system
+          cat > config/system/settings.php << 'EOF'
+          <?php
+          return array_replace_recursive(
+              include __DIR__ . '/../../vendor/typo3/cms-core/Configuration/DefaultConfiguration.php',
+              [
+                  'DB' => [
+                      'Connections' => [
+                          'Default' => [
+                              'charset'  => 'utf8mb4',
+                              'dbname'   => 'typo3',
+                              'driver'   => 'mysqli',
+                              'host'     => '127.0.0.1',
+                              'password' => 'typo3',
+                              'port'     => 3306,
+                              'user'     => 'typo3',
+                          ],
+                      ],
+                  ],
+                  'SYS' => [
+                      'encryptionKey' => '${{ secrets.TYPO3_ENCRYPTION_KEY }}',
+                      'trustedHostsPattern' => '.*',
+                  ],
+              ]
+          );
+          EOF
+
+      - name: Set up TYPO3
+        run: |
+          php vendor/bin/typo3 setup \
+            --no-interaction \
+            --server-type=apache \
+            --driver=mysqli \
+            --host=127.0.0.1 \
+            --port=3306 \
+            --dbname=typo3 \
+            --username=typo3 \
+            --password=typo3 \
+            --admin-username=admin \
+            --admin-user-password="${{ secrets.TYPO3_ADMIN_PASSWORD }}" \
+            --admin-email=odenwald91@gmail.com \
+            --project-name="Dresden Events Demo" \
+            --create-site="http://localhost:8080" \
+            --force 2>&1
+
+      - name: Import database dump (if exists)
+        run: |
+          if [ -f scripts/typo3.sql.gz ]; then
+            gunzip -c scripts/typo3.sql.gz | mysql -h 127.0.0.1 -u typo3 -ptypo3 typo3
+          fi
+
+      - name: Start PHP built-in server
+        run: |
+          php -S 0.0.0.0:8080 -t public &
+          sleep 3
+
+      - name: Crawl static site with wget
+        run: |
+          mkdir -p _static
+          wget \
+            --mirror \
+            --convert-links \
+            --adjust-extension \
+            --page-requisites \
+            --no-parent \
+            --no-verbose \
+            --directory-prefix=_static \
+            --reject="*.php,install.php" \
+            --exclude-directories="/typo3,/typo3temp" \
+            http://localhost:8080/ 2>&1 || true
+
+      - name: Deploy to GitHub Pages repo
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        run: |
+          CRAWLED="_static/localhost+8080"
+          if [ ! -d "$CRAWLED" ]; then
+            echo "No crawled output found"; exit 1
+          fi
+
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          git clone --depth=1 \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/dresdenevents/dresdenevents.github.io.git" \
+            /tmp/pages
+
+          rm -rf /tmp/pages/typo3-demo
+          mkdir -p /tmp/pages/typo3-demo
+          cp -r "$CRAWLED/." /tmp/pages/typo3-demo/
+
+          cd /tmp/pages
+          git add typo3-demo
+          git diff --cached --quiet && echo "No changes." && exit 0
+          git commit -m "chore: update TYPO3 static export [$(date -u +%Y-%m-%dT%H:%M:%SZ)]"
+          git push origin main

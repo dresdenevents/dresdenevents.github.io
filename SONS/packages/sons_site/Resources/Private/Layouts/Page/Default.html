@@ -1,0 +1,19 @@
+{namespace f=TYPO3\CMS\Fluid\ViewHelpers}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SONS – Schwingungsüberwachung, Pilotprojekt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{f:uri.resource(path: 'EXT:sons_site/Resources/Public/Css/main.css')}">
+</head>
+<body>
+    <f:render partial="Header" />
+    <main id="inhalt">
+        <f:render section="Content" />
+    </main>
+    <f:render partial="Footer" />
+    <script src="{f:uri.resource(path: 'EXT:sons_site/Resources/Public/Js/main.js')}"></script>
+</body>
+</html>

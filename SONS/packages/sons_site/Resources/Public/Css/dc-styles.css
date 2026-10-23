@@ -1,0 +1,8 @@
+
+body{margin:0;font-family:'Source Sans 3','Source Sans Pro',system-ui,sans-serif;color:#2B2B2B;background:#FFFFFF;-webkit-font-smoothing:antialiased}
+a{color:#2B3978}a:hover{color:#182247}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #2B3978;outline-offset:2px}
+.btn:hover{filter:brightness(1.12)}
+.navlink{color:#2B2B2B;text-decoration:none}.navlink:hover{color:#2B3978;text-decoration:underline}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;background:#fff;padding:8px 12px;z-index:10}
+input,textarea{font:inherit}
