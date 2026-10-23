@@ -64,3 +64,6 @@ to be used for development.
 ## License
 
 GPL-2.0 or later
+
+## SONS Landingpage
+TYPO3-based landing page for SONS vibration monitoring.
