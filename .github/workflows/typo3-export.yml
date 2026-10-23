@@ -33,40 +33,6 @@ jobs:
           mkdir -p public/typo3temp/assets
           chmod -R 777 var/ public/typo3temp/
 
-      - name: Write TYPO3 settings.php (SQLite)
-        working-directory: typo3-source
-        env:
-          TYPO3_ENCRYPTION_KEY: ${{ secrets.TYPO3_ENCRYPTION_KEY }}
-        run: |
-          mkdir -p config/system
-          cat > config/system/settings.php << PHP
-          <?php
-          return [
-              'BE' => [
-                  'passwordHashing' => [
-                      'className' => 'TYPO3\\\\CMS\\\\Core\\\\Crypto\\\\PasswordHashing\\\\Argon2iPasswordHash',
-                      'options' => [],
-                  ],
-              ],
-              'DB' => [
-                  'Connections' => [
-                      'Default' => [
-                          'driver' => 'pdo_sqlite',
-                          'path'   => __DIR__ . '/../../var/typo3.sqlite',
-                      ],
-                  ],
-              ],
-              'GFX' => ['processor_enabled' => false],
-              'SYS' => [
-                  'encryptionKey'      => '${TYPO3_ENCRYPTION_KEY}',
-                  'trustedHostsPattern' => '.*',
-                  'devIPmask'          => '*',
-                  'displayErrors'      => 1,
-                  'sitename'           => 'Dresden Events Demo',
-              ],
-          ];
-          PHP
-
       - name: Run TYPO3 setup
         working-directory: typo3-source
         env:
@@ -84,6 +50,19 @@ jobs:
             --create-site="http://localhost:8080" \
             --force > /tmp/typo3setup.log 2>&1
           cat /tmp/typo3setup.log
+
+      - name: Write additional.php overrides
+        working-directory: typo3-source
+        run: |
+          cat > config/system/additional.php << 'PHP'
+          <?php
+          $GLOBALS['TYPO3_CONF_VARS']['SYS']['trustedHostsPattern'] = '.*';
+          $GLOBALS['TYPO3_CONF_VARS']['SYS']['devIPmask'] = '*';
+          $GLOBALS['TYPO3_CONF_VARS']['SYS']['displayErrors'] = 1;
+          $GLOBALS['TYPO3_CONF_VARS']['GFX']['processor_enabled'] = false;
+          PHP
+          echo "settings.php DB config:"
+          grep -A5 "pdo_sqlite\|driver\|path" config/system/settings.php | head -10
 
       - name: Fix site base URL for CI
         working-directory: typo3-source
