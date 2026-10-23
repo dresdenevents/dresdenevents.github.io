@@ -68,7 +68,7 @@ jobs:
         working-directory: typo3-source
         run: |
           find config/sites -name "config.yaml" -exec \
-            sed -i "s|base:.*ddev\.site.*|base: 'http://localhost:8080'|g" {} \;
+            sed -i "s|base:.*ddev\.site.*|base: 'http://localhost:8080/typo3-demo/SONS/'|g" {} \;
           cat config/sites/*/config.yaml
 
       - name: Seed homepage page in SQLite
@@ -134,9 +134,9 @@ jobs:
             echo "ERROR: No crawled output found"; find _crawl/; exit 1
           fi
           echo "Crawled dir: $CRAWLED"
-          rm -rf typo3-demo
+          mkdir -p typo3-demo/SONS
           mkdir -p typo3-demo
-          cp -r "$CRAWLED/." typo3-demo/
+          cp -r "$CRAWLED/." typo3-demo/SONS/
           echo "Deployed $(find typo3-demo -type f | wc -l) files to typo3-demo/"
 
       - name: Commit and push
