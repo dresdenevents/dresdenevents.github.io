@@ -96,6 +96,13 @@ jobs:
             gunzip -c scripts/content.sql.gz | mysql -h 127.0.0.1 -u typo3 -ptypo3 typo3
           fi
 
+      - name: Prepare TYPO3 runtime directories
+        working-directory: typo3-source
+        run: |
+          mkdir -p var/cache var/labels var/lock var/log var/session
+          mkdir -p public/typo3temp/assets
+          chmod -R 777 var/ public/typo3temp/
+
       - name: Start PHP built-in server
         working-directory: typo3-source
         run: |
@@ -106,9 +113,14 @@ jobs:
           if ($path !== '/' && is_file($file)) { return false; }
           require __DIR__ . '/index.php';
           PHP
-          php -S 0.0.0.0:8080 -t public/ public/router.php &
+          php -d display_errors=1 -d error_reporting=E_ALL -S 0.0.0.0:8080 -t public/ public/router.php &
           sleep 3
-          curl -s http://localhost:8080/ -o /dev/null -w "HTTP %{http_code}\n"
+          HTTP=$(curl -s http://localhost:8080/ -o /tmp/typo3_response.html -w "%{http_code}")
+          echo "HTTP $HTTP"
+          if [ "$HTTP" != "200" ]; then
+            echo "--- Response body ---"
+            cat /tmp/typo3_response.html | head -50
+          fi
 
       - name: Crawl static site
         run: |
