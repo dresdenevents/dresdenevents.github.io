@@ -90,9 +90,16 @@ jobs:
       - name: Start PHP built-in server
         working-directory: typo3-source
         run: |
-          php -S 0.0.0.0:8080 -t public/ &
+          cat > public/router.php << 'PHP'
+          <?php
+          $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+          $file = __DIR__ . $path;
+          if ($path !== '/' && is_file($file)) { return false; }
+          require __DIR__ . '/index.php';
+          PHP
+          php -S 0.0.0.0:8080 -t public/ public/router.php &
           sleep 3
-          curl -sf http://localhost:8080/ > /dev/null && echo "Server ready"
+          curl -s http://localhost:8080/ -o /dev/null -w "HTTP %{http_code}\n"
 
       - name: Crawl static site
         run: |
