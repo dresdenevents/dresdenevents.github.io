@@ -95,8 +95,15 @@ jobs:
       - name: Seed homepage page in SQLite
         working-directory: typo3-source
         run: |
+          SQLITE_FILE=$(find var -name "*.sqlite" 2>/dev/null | head -1)
+          echo "SQLite file: $SQLITE_FILE"
+          if [ -z "$SQLITE_FILE" ]; then
+            echo "No SQLite file found!"; ls -la var/; exit 1
+          fi
           php -r "
-            \$db = new PDO('sqlite:var/typo3.sqlite');
+            \$db = new PDO('sqlite:$SQLITE_FILE');
+            \$tables = \$db->query(\"SELECT name FROM sqlite_master WHERE type='table' AND name='pages'\")->fetchColumn();
+            if (!\$tables) { echo 'No pages table yet, skipping.'; exit(0); }
             \$now = time();
             \$db->exec(\"INSERT OR IGNORE INTO pages
               (uid, pid, title, slug, doktype, is_siteroot, hidden, deleted, sorting, tstamp, crdate)
