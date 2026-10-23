@@ -36,13 +36,16 @@ jobs:
           php-version: "8.3"
           extensions: mysqli, mbstring, intl, gd, zip, xml, curl
 
-      - name: Wait for MariaDB
+      - name: Wait for MariaDB and seed homepage
         run: |
           for i in {1..30}; do
-            mysql -h 127.0.0.1 -u typo3 -ptypo3 -e "SELECT 1" typo3 2>/dev/null && echo "DB ready" && break
-            echo "Waiting for DB... ($i)"
-            sleep 2
+            mysql -h 127.0.0.1 -u typo3 -ptypo3 typo3 -e "SELECT 1" 2>/dev/null && echo "DB ready" && break
+            echo "Waiting for DB... ($i)"; sleep 2
           done
+          mysql -h 127.0.0.1 -u typo3 -ptypo3 typo3 -e "
+            INSERT IGNORE INTO pages (uid, pid, title, slug, doktype, is_siteroot, hidden, deleted, sorting, tstamp, crdate)
+            VALUES (1, 0, 'Dresden Events Demo', '/', 1, 1, 0, 0, 128, UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
+          " 2>/dev/null || true
 
       - name: Install Composer dependencies
         working-directory: typo3-source
@@ -84,14 +87,6 @@ jobs:
         run: |
           sed -i "s|base:.*dresdenevents-typo3.ddev.site.*|base: 'http://localhost:8080'|" config/sites/main/config.yaml
           cat config/sites/main/config.yaml
-
-      - name: Ensure homepage exists in DB
-        run: |
-          mysql -h 127.0.0.1 -u typo3 -ptypo3 typo3 << 'SQL'
-          INSERT IGNORE INTO pages (uid, pid, title, slug, doktype, is_siteroot, hidden, deleted, sorting, tstamp, crdate)
-          VALUES (1, 0, 'Dresden Events Demo', '/', 1, 1, 0, 0, 128, UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
-          SQL
-          echo "Pages in DB: $(mysql -h 127.0.0.1 -u typo3 -ptypo3 -se 'SELECT COUNT(*) FROM typo3.pages;')"
 
       - name: Import content DB dump (optional)
         working-directory: typo3-source
