@@ -71,16 +71,35 @@ jobs:
             --force > /tmp/typo3setup.log 2>&1 || true
           cat /tmp/typo3setup.log
 
-      - name: Fix settings after setup
+      - name: Write final settings.php
         working-directory: typo3-source
+        env:
+          TYPO3_ENCRYPTION_KEY: ${{ secrets.TYPO3_ENCRYPTION_KEY }}
         run: |
-          php -r "
-            \$cfg = include 'config/system/settings.php';
-            \$cfg['SYS']['encryptionKey'] = '${{ secrets.TYPO3_ENCRYPTION_KEY }}';
-            \$cfg['SYS']['trustedHostsPattern'] = '.*';
-            \$cfg['GFX']['processor_enabled'] = false;
-            file_put_contents('config/system/settings.php', '<?php return ' . var_export(\$cfg, true) . ';');
-          "
+          cat > config/system/settings.php << PHP
+          <?php
+          return [
+              'BE' => ['passwordHashing' => ['className' => 'TYPO3\\\\CMS\\\\Core\\\\Crypto\\\\PasswordHashing\\\\Argon2iPasswordHash', 'options' => []]],
+              'DB' => ['Connections' => ['Default' => [
+                  'charset' => 'utf8mb4',
+                  'dbname'  => 'typo3',
+                  'driver'  => 'mysqli',
+                  'host'    => '127.0.0.1',
+                  'password'=> 'typo3',
+                  'port'    => 3306,
+                  'user'    => 'typo3',
+                  'tableoptions' => ['charset' => 'utf8mb4', 'collate' => 'utf8mb4_unicode_ci'],
+              ]]],
+              'GFX' => ['processor_enabled' => false],
+              'SYS' => [
+                  'encryptionKey'     => '${TYPO3_ENCRYPTION_KEY}',
+                  'trustedHostsPattern' => '.*',
+                  'devIPmask'         => '*',
+                  'displayErrors'     => 1,
+                  'sitename'          => 'Dresden Events Demo',
+              ],
+          ];
+          PHP
 
       - name: Fix site base URL for CI
         working-directory: typo3-source
